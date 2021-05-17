@@ -1,0 +1,168 @@
+﻿@model Stajtakip.Models.EntityFramework.AdminUserInfo
+
+@{
+    ViewBag.Title = "EditInformation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+<script>
+    function showHidden() {
+        var x = document.getElementById("myInputCurrent");
+        var y = document.getElementById("myInputNew");
+        var z = document.getElementById("myInputConfirm");
+
+        if (x.type == "password" || y.type == "password" || z.type == "password") {
+            x.type = "text";
+            y.type = "text";
+            z.type = "text";
+        } else {
+            x.type = "password";
+            y.type = "password";
+            z.type = "password";
+        }
+    } 
+    </script>
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">My Informations</h5>
+        </div>
+        @using (Html.BeginForm("AdminEditInfo", "AdminMain", FormMethod.Post))
+        {
+            <div class="card-body">
+                <div class="row" style="margin:5px;">
+                    <label>Name</label>
+                    @Html.EditorFor(model => model.AdminName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+                    @Html.ValidationMessageFor(model => model.AdminName, "", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>Surname</label>
+                    @Html.EditorFor(model => model.AdminSurname, new { htmlAttributes = new { @class = "form-control", placeholder = "Surname" } })
+                    @Html.ValidationMessageFor(model => model.AdminSurname, "", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>Email</label>
+                    @Html.EditorFor(model => model.AdminEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.AdminEmail, "", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>Current Password</label>
+                    @*@Html.EditorFor(model =>model.AdminPassword, new { htmlAttributes = new { @class = "form-control", @id = "myInput", @type = "password", placeholder = "Password" } })*@
+                    <input type="password" name="Currentpass" class="form-control" id="myInputCurrent" placeholder="Current Password" />
+                    @*@Html.ValidationMessageFor(model => model.AdminPassword, "", new { htmlAttributes = new { @class = "form-control" } })*@
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>New Password</label>
+                    @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control", @id = "myInputNew", @type = "password", placeholder = "New Password" } })
+                    @*<input type="password" class="form-control" id="myInput" placeholder=" Current Password" />*@
+                    @Html.ValidationMessageFor(model => model.NewPassword, "", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>Confirm Password</label>
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "myInputConfirm", @type = "password", placeholder = "Confirm Password" } })
+                    <label><input type="checkbox" onclick="showHidden()"> Show Password</label>
+                    @*@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { htmlAttributes = new { @class = "form-control" } })*@
+                </div>
+                <div style="text-align:center;">
+                    <button type="submit" class="btn btn-primary btn-success" style="text-align:center; width:20%;" onclick="return confirm('Are you sure that you want to change your password ?\nYou will redirect to Login.')">Update</button>
+                </div>
+            </div>
+        }
+        @if (ViewBag.ThereIsSpaceInPass == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Please enter a valid password !
+                </p>
+                <p style="font-size:9pt;margin-top:1%;font-weight:bold;">Password cannot include space character.</p>
+            </div>
+        }
+        @if (ViewBag.othermailtype == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Please enter a valid mail address !
+                </p>
+                <p style="font-size:9pt;margin-top:1%;font-weight:bold;">example@hku.edu.tr</p>
+            </div>
+        }
+        @if (ViewBag.ValidatePassError == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Please have at least 6 characters and at least one lower and upper case character and a non letter character and at least a numerical character in your new password !
+                </p>
+            </div>
+        }
+        @if (ViewBag.InfoControl == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.fail
+                </p>
+            </div>
+        }
+        @if (ViewBag.Control == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.wrongCurrent
+                </p>
+            </div>
+        }
+        @if (ViewBag.ControlNull == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.NullPass
+                </p>
+            </div>
+        }
+        @if (ViewBag.co == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.mess
+                </p>
+            </div>
+        }
+    </div>
+</div>

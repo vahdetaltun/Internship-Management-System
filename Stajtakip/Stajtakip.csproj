@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EE5186EB-55F9-43AB-B872-88B3F692CAC9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stajtakip</RootNamespace>
+    <AssemblyName>Stajtakip</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.5</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BotDetect, Version=4.4.1.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.4.1\lib\net35\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.4.1.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.4.1\lib\net35\BotDetect.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Quartz, Version=3.0.7.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.0.7\lib\net452\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Common, Version=2.9.14.6046, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.9.10.4\lib\net46\Spire.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License, Version=1.3.7.46, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.9.10.4\lib\net46\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf, Version=5.10.2.2046, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.9.10.4\lib\net46\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.XLS, Version=9.10.4.6046, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.XLS.9.10.4\lib\net46\Spire.XLS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminMainController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\StudentMainController.cs" />
+    <Compile Include="Controllers\TeacherMainController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CommentDocumentViewModel.cs" />
+    <Compile Include="Models\CouncilStudentViewModel.cs" />
+    <Compile Include="Models\CouncilTeacherViewModel.cs" />
+    <Compile Include="Models\EntityFramework\AdminUserInfo.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Comment.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Council.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\DBDataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\DBDataContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\DBDataContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBDataContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Department.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Document.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Faculty.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\GradeCategory.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\GradeTypeAvarage.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\InternInfo.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\RejectedApplications.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\Semester.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\StudentGrade.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\StudentOverallGrade.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\StudentUserInfo.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntityFramework\TeacherUserInfo.cs">
+      <DependentUpon>DBDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GradeCategoryStudentGradeViewModel.cs" />
+    <Compile Include="Models\GradeDocumentViewModel.cs" />
+    <Compile Include="Models\RejectedApplicationInternInfoViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\academic-cal-min.css" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chat-min.css" />
+    <Content Include="Content\ddscrollspydemo.css" />
+    <Content Include="Content\error-min.css" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\Layout-css\assets\css\bootstrap.min.css" />
+    <Content Include="Content\Layout-css\assets\css\paper-dashboard.css" />
+    <Content Include="Content\Layout-css\assets\css\paper-dashboard.min.css" />
+    <Content Include="Content\Layout-css\assets\demo\demo.css" />
+    <Content Include="Content\Layout-css\assets\demo\demo.js" />
+    <Content Include="Content\Layout-css\assets\img\apple-icon.png" />
+    <Content Include="Content\Layout-css\assets\img\bg5.jpg" />
+    <Content Include="Content\Layout-css\assets\img\damir-bosnjak.jpg" />
+    <Content Include="Content\Layout-css\assets\img\default-avatar.png" />
+    <Content Include="Content\Layout-css\assets\img\faces\ayo-ogunseinde-1.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\ayo-ogunseinde-2.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\clem-onojeghuo-1.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\clem-onojeghuo-2.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\clem-onojeghuo-3.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\clem-onojeghuo-4.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\erik-lucatero-1.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\erik-lucatero-2.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\joe-gardner-1.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\joe-gardner-2.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\kaci-baum-1.jpg" />
+    <Content Include="Content\Layout-css\assets\img\faces\kaci-baum-2.jpg" />
+    <Content Include="Content\Layout-css\assets\img\favicon.png" />
+    <Content Include="Content\Layout-css\assets\img\header.jpg" />
+    <Content Include="Content\Layout-css\assets\img\jan-sendereks.jpg" />
+    <Content Include="Content\Layout-css\assets\img\logo-small.png" />
+    <Content Include="Content\Layout-css\assets\img\mike.jpg" />
+    <Content Include="Content\Layout-css\assets\js\core\bootstrap.min.js" />
+    <Content Include="Content\Layout-css\assets\js\core\jquery.min.js" />
+    <Content Include="Content\Layout-css\assets\js\core\popper.min.js" />
+    <Content Include="Content\Layout-css\assets\js\paper-dashboard.js" />
+    <Content Include="Content\Layout-css\assets\js\paper-dashboard.min.js" />
+    <Content Include="Content\Layout-css\assets\js\plugins\bootstrap-notify.js" />
+    <Content Include="Content\Layout-css\assets\js\plugins\chartjs.min.js" />
+    <Content Include="Content\Layout-css\assets\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="Content\Layout-css\defaultPageFont-min.css" />
+    <Content Include="Content\Layout-css\fileupload-min.css" />
+    <Content Include="Content\login-min.css" />
+    <Content Include="Content\NotFound-min.css" />
+    <Content Include="Content\paperclip.css" />
+    <Content Include="Content\PlaceholderStyle.css" />
+    <Content Include="Content\showPass-min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\SquareButton.css" />
+    <Content Include="Content\text.config.min.css" />
+    <Content Include="Content\tooltip-min.css" />
+    <Content Include="Content\vfi-min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Html\NotFound.html" />
+    <Content Include="Html\NotFoundStudent.html" />
+    <Content Include="Html\NotFoundTchWOButton.html" />
+    <Content Include="Html\NotFoundTeacher.html" />
+    <Content Include="Image\blacklogo.png" />
+    <Content Include="Image\logo.png" />
+    <Content Include="Image\pdfLogo.png" />
+    <Content Include="Image\whitelogo.png" />
+    <Content Include="Models\EntityFramework\DBDataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBDataContext.edmx</DependentUpon>
+      <LastGenOutput>DBDataContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EntityFramework\DBDataContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBDataContext.edmx</DependentUpon>
+      <LastGenOutput>DBDataContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="Grid.mvc.readme" />
+    <EntityDeploy Include="Models\EntityFramework\DBDataContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBDataContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EntityFramework\DBDataContext.edmx.diagram">
+      <DependentUpon>DBDataContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ddscrollspy.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
+    <Content Include="Scripts\gulpfile.js" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\Layout-css\assets\css\bootstrap.min.css.map" />
+    <Content Include="Content\Layout-css\assets\css\paper-dashboard.css.map" />
+    <Content Include="Content\Layout-css\assets\fonts\nucleo-icons.eot" />
+    <Content Include="Content\Layout-css\assets\fonts\nucleo-icons.ttf" />
+    <Content Include="Content\Layout-css\assets\fonts\nucleo-icons.woff" />
+    <Content Include="Content\Layout-css\assets\fonts\nucleo-icons.woff2" />
+    <Content Include="Content\Layout-css\assets\js\paper-dashboard.js.map" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\cards\_card-chart.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\cards\_card-map.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\cards\_card-plain.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\cards\_card-stats.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\cards\_card-user.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_buttons.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_cards.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_dropdown.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_inputs.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_page-header.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_transparency.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\plugins\_plugin-animate-bootstrap-notify.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\plugins\_plugin-perfect-scrollbar.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_alerts.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_animated-buttons.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_buttons.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_cards.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_checkboxes-radio.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_dropdown.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_fixed-plugin.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_footers.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_images.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_inputs.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_misc.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_mixins.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_navbar.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_nucleo-outline.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_page-header.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_responsive.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_sidebar-and-main-panel.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_tables.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_typography.scss" />
+    <Content Include="Content\Layout-css\assets\scss\paper-dashboard\_variables.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loadingList-min.js" />
+    <Content Include="Scripts\login-min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\wow.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\AdminMain\AddGradeCategory.cshtml" />
+    <Content Include="Views\AdminMain\AddMemberToCouncil.cshtml" />
+    <Content Include="Views\AdminMain\AddStudentToCouncil.cshtml" />
+    <Content Include="Views\AdminMain\AddTeacher.cshtml" />
+    <Content Include="Views\AdminMain\AdminEditInfo.cshtml" />
+    <Content Include="Views\AdminMain\AdminMainPage.cshtml" />
+    <Content Include="Views\AdminMain\AllStudentsGrade.cshtml" />
+    <Content Include="Views\AdminMain\ConfirmedStudents.cshtml" />
+    <Content Include="Views\AdminMain\CreateCouncil.cshtml" />
+    <Content Include="Views\AdminMain\DeleteStudentFromCouncil.cshtml" />
+    <Content Include="Views\AdminMain\DetailTeacher.cshtml" />
+    <Content Include="Views\AdminMain\EditCouncil.cshtml" />
+    <Content Include="Views\AdminMain\EditGradeCategory.cshtml" />
+    <Content Include="Views\AdminMain\EditSemester.cshtml" />
+    <Content Include="Views\AdminMain\EditTeacher.cshtml" />
+    <Content Include="Views\AdminMain\InternshipOperations.cshtml" />
+    <Content Include="Views\AdminMain\ListCouncil.cshtml" />
+    <Content Include="Views\AdminMain\ListCouncilWithError.cshtml" />
+    <Content Include="Views\AdminMain\ListGradeCategory.cshtml" />
+    <Content Include="Views\AdminMain\ListTeacher.cshtml" />
+    <Content Include="Views\AdminMain\NotFound.cshtml" />
+    <Content Include="Views\AdminMain\PendingStudents.cshtml" />
+    <Content Include="Views\AdminMain\RejectStudentDetail.cshtml" />
+    <Content Include="Views\AdminMain\StartSemester.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\DefaultPage.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\NewPasswordPage.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\RegisterDepartmentStep.cshtml" />
+    <Content Include="Views\Login\RegisterFacultyStep.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Login\SessionControl.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_DefaultPage.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Shared\_GridPager.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_OutOfOrderLayout.cshtml" />
+    <Content Include="Views\Shared\_RegisterPage.cshtml" />
+    <Content Include="Views\Shared\_ResetPasswordStep1.cshtml" />
+    <Content Include="Views\Shared\_StudentLayout.cshtml" />
+    <Content Include="Views\Shared\_TeacherLayout.cshtml" />
+    <Content Include="Views\StudentMain\AddInternInfo.cshtml" />
+    <Content Include="Views\StudentMain\AddInternInfoAbroad.cshtml" />
+    <Content Include="Views\StudentMain\ContactTeachers.cshtml" />
+    <Content Include="Views\StudentMain\GradeCategoryList.cshtml" />
+    <Content Include="Views\StudentMain\InternStatu.cshtml" />
+    <Content Include="Views\StudentMain\MainPage.cshtml" />
+    <Content Include="Views\StudentMain\MyCouncil.cshtml" />
+    <Content Include="Views\StudentMain\MyGrades.cshtml" />
+    <Content Include="Views\StudentMain\NotFoundStd.cshtml" />
+    <Content Include="Views\StudentMain\NotFoundStdWOButton.cshtml" />
+    <Content Include="Views\StudentMain\UpdateInfo.cshtml" />
+    <Content Include="Views\StudentMain\UpdateInternInfo.cshtml" />
+    <Content Include="Views\StudentMain\UploadFiles.cshtml" />
+    <Content Include="Views\TeacherMain\GradeCategoryList.cshtml" />
+    <Content Include="Views\TeacherMain\GradeStudent.cshtml" />
+    <Content Include="Views\TeacherMain\Index.cshtml" />
+    <Content Include="Views\TeacherMain\MyCouncil.cshtml" />
+    <Content Include="Views\TeacherMain\MyStudents.cshtml" />
+    <Content Include="Views\TeacherMain\MyStudentsInternDetail.cshtml" />
+    <Content Include="Views\TeacherMain\NotFoundTch.cshtml" />
+    <Content Include="Views\TeacherMain\NotFoundTchWOButton.cshtml" />
+    <Content Include="Views\TeacherMain\TeacherMainPage.cshtml" />
+    <Content Include="Views\TeacherMain\UpdateInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60314</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60314/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

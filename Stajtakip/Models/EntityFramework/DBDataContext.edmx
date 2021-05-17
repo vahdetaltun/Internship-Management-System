@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBDataContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUserInfo">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AdminSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="AdminEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="AdminPassword" Type="varchar(max)" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="GradeCategoryID" Type="int" />
+          <Property Name="SenderID" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="SenderName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SenderSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="Council">
+          <Key>
+            <PropertyRef Name="CouncilID" />
+          </Key>
+          <Property Name="CouncilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="CouncilName" Type="nvarchar" MaxLength="100" />
+          <Property Name="isFilling" Type="bit" />
+          <Property Name="isDeleting" Type="bit" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyID" Type="int" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Approve" Type="bit" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="GradeCategoryID" Type="int" />
+          <Property Name="FileLocation" Type="nvarchar(max)" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Approve" Type="bit" />
+        </EntityType>
+        <EntityType Name="GradeCategory">
+          <Key>
+            <PropertyRef Name="GradeCategoryID" />
+          </Key>
+          <Property Name="GradeCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Percent" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="isGrading" Type="bit" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="StartDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastDate" Type="nvarchar" MaxLength="100" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="GradeTypeAvarage">
+          <Key>
+            <PropertyRef Name="GradeTypeAvarageID" />
+          </Key>
+          <Property Name="GradeTypeAvarageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GradeCategoryID" Type="int" />
+          <Property Name="GradeCategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="GradeTypeAvarage" Type="float" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="InternInfo">
+          <Key>
+            <PropertyRef Name="InternID" />
+          </Key>
+          <Property Name="InternID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="CompanyAddress" Type="nvarchar(max)" />
+          <Property Name="CompanyCity" Type="nvarchar(max)" />
+          <Property Name="CompanyPhone" Type="nvarchar(max)" />
+          <Property Name="AuthorizedPersonel" Type="nvarchar(max)" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="StudentName" Type="nvarchar(max)" />
+          <Property Name="StudentSurname" Type="nvarchar(max)" />
+          <Property Name="Grade" Type="float" />
+          <Property Name="CouncilID" Type="int" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="SemesterID" Type="int" />
+          <Property Name="DayOfRegistration" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RejectedApplications">
+          <Key>
+            <PropertyRef Name="RejectedID" />
+          </Key>
+          <Property Name="RejectedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="CompanyAddress" Type="nvarchar(max)" />
+          <Property Name="CompanyCity" Type="nvarchar(max)" />
+          <Property Name="CompanyPhone" Type="nvarchar(max)" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="SemesterID" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="DayOfRegister" Type="datetime" />
+          <Property Name="AuthorizedPersonel" Type="nvarchar" MaxLength="100" />
+          <Property Name="DayOfRejection" Type="datetime" />
+          <Property Name="RejectedMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemesterName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="EndDateInternship" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StudentGrade">
+          <Key>
+            <PropertyRef Name="StudentGradeID" />
+          </Key>
+          <Property Name="StudentGradeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="GradeCategoryID" Type="int" />
+          <Property Name="Grade" Type="float" />
+          <Property Name="CouncilID" Type="int" />
+          <Property Name="TeacherID" Type="int" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentOverallGrade">
+          <Key>
+            <PropertyRef Name="OverallGradeID" />
+          </Key>
+          <Property Name="OverallGradeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="float" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentUserInfo">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentSchoolID" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="StudentPhoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="CouncilID" Type="int" />
+          <Property Name="isAbroad" Type="bit" />
+          <Property Name="SemesterID" Type="int" />
+        </EntityType>
+        <EntityType Name="TeacherUserInfo">
+          <Key>
+            <PropertyRef Name="TeacherID" />
+          </Key>
+          <Property Name="TeacherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="TeacherSurname" Type="nvarchar" MaxLength="100" />
+          <Property Name="TeacherEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="TeacherPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="TeacherRoom" Type="nvarchar" MaxLength="100" />
+          <Property Name="Approve" Type="bit" />
+          <Property Name="CouncilID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityContainer Name="DBDataContextStoreContainer">
+          <EntitySet Name="AdminUserInfo" EntityType="Self.AdminUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Council" EntityType="Self.Council" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeCategory" EntityType="Self.GradeCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeTypeAvarage" EntityType="Self.GradeTypeAvarage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternInfo" EntityType="Self.InternInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RejectedApplications" EntityType="Self.RejectedApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentGrade" EntityType="Self.StudentGrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentOverallGrade" EntityType="Self.StudentOverallGrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentUserInfo" EntityType="Self.StudentUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherUserInfo" EntityType="Self.TeacherUserInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBDataContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminUserInfo">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdminSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdminEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="DepartmentID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="GradeCategoryID" Type="Int32" />
+          <Property Name="SenderID" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="SenderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SenderSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Council">
+          <Key>
+            <PropertyRef Name="CouncilID" />
+          </Key>
+          <Property Name="CouncilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="CouncilName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isFilling" Type="Boolean" />
+          <Property Name="isDeleting" Type="Boolean" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyID" Type="Int32" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="GradeCategoryID" Type="Int32" />
+          <Property Name="FileLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Faculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="GradeCategory">
+          <Key>
+            <PropertyRef Name="GradeCategoryID" />
+          </Key>
+          <Property Name="GradeCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Percent" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="isGrading" Type="Boolean" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="StartDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastDate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GradeTypeAvarage">
+          <Key>
+            <PropertyRef Name="GradeTypeAvarageID" />
+          </Key>
+          <Property Name="GradeTypeAvarageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GradeCategoryID" Type="Int32" />
+          <Property Name="GradeCategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GradeTypeAvarage1" Type="Double" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="StudentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InternInfo">
+          <Key>
+            <PropertyRef Name="InternID" />
+          </Key>
+          <Property Name="InternID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizedPersonel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="StudentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentSurname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="Double" />
+          <Property Name="CouncilID" Type="Int32" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="SemesterID" Type="Int32" />
+          <Property Name="DayOfRegistration" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RejectedApplications">
+          <Key>
+            <PropertyRef Name="RejectedID" />
+          </Key>
+          <Property Name="RejectedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="SemesterID" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="DayOfRegister" Type="DateTime" Precision="3" />
+          <Property Name="AuthorizedPersonel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DayOfRejection" Type="DateTime" Precision="3" />
+          <Property Name="RejectedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemesterID" />
+          </Key>
+          <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemesterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="EndDateInternship" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="StudentGrade">
+          <Key>
+            <PropertyRef Name="StudentGradeID" />
+          </Key>
+          <Property Name="StudentGradeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="GradeCategoryID" Type="Int32" />
+          <Property Name="Grade" Type="Double" />
+          <Property Name="CouncilID" Type="Int32" />
+          <Property Name="TeacherID" Type="Int32" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="StudentOverallGrade">
+          <Key>
+            <PropertyRef Name="OverallGradeID" />
+          </Key>
+          <Property Name="OverallGradeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Double" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="StudentUserInfo">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentSchoolID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="StudentPhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="CouncilID" Type="Int32" />
+          <Property Name="isAbroad" Type="Boolean" />
+          <Property Name="SemesterID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TeacherUserInfo">
+          <Key>
+            <PropertyRef Name="TeacherID" />
+          </Key>
+          <Property Name="TeacherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherRoom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Boolean" />
+          <Property Name="CouncilID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="StajTakipEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminUserInfo" EntityType="Self.AdminUserInfo" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Council" EntityType="Self.Council" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="Faculty" EntityType="Self.Faculty" />
+          <EntitySet Name="GradeCategory" EntityType="Self.GradeCategory" />
+          <EntitySet Name="GradeTypeAvarage" EntityType="Self.GradeTypeAvarage" />
+          <EntitySet Name="InternInfo" EntityType="Self.InternInfo" />
+          <EntitySet Name="RejectedApplications" EntityType="Self.RejectedApplications" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" />
+          <EntitySet Name="StudentGrade" EntityType="Self.StudentGrade" />
+          <EntitySet Name="StudentOverallGrade" EntityType="Self.StudentOverallGrade" />
+          <EntitySet Name="StudentUserInfo" EntityType="Self.StudentUserInfo" />
+          <EntitySet Name="TeacherUserInfo" EntityType="Self.TeacherUserInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBDataContextStoreContainer" CdmEntityContainer="StajTakipEntities">
+          <EntitySetMapping Name="AdminUserInfo">
+            <EntityTypeMapping TypeName="DBDataContext.AdminUserInfo">
+              <MappingFragment StoreEntitySet="AdminUserInfo">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="AdminSurname" ColumnName="AdminSurname" />
+                <ScalarProperty Name="AdminEmail" ColumnName="AdminEmail" />
+                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="DBDataContext.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="GradeCategoryID" ColumnName="GradeCategoryID" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderSurname" ColumnName="SenderSurname" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Council">
+            <EntityTypeMapping TypeName="DBDataContext.Council">
+              <MappingFragment StoreEntitySet="Council">
+                <ScalarProperty Name="CouncilID" ColumnName="CouncilID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="CouncilName" ColumnName="CouncilName" />
+                <ScalarProperty Name="isFilling" ColumnName="isFilling" />
+                <ScalarProperty Name="isDeleting" ColumnName="isDeleting" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="DBDataContext.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="DBDataContext.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="GradeCategoryID" ColumnName="GradeCategoryID" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty">
+            <EntityTypeMapping TypeName="DBDataContext.Faculty">
+              <MappingFragment StoreEntitySet="Faculty">
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeCategory">
+            <EntityTypeMapping TypeName="DBDataContext.GradeCategory">
+              <MappingFragment StoreEntitySet="GradeCategory">
+                <ScalarProperty Name="GradeCategoryID" ColumnName="GradeCategoryID" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="isGrading" ColumnName="isGrading" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeTypeAvarage">
+            <EntityTypeMapping TypeName="DBDataContext.GradeTypeAvarage">
+              <MappingFragment StoreEntitySet="GradeTypeAvarage">
+                <ScalarProperty Name="GradeTypeAvarageID" ColumnName="GradeTypeAvarageID" />
+                <ScalarProperty Name="GradeCategoryID" ColumnName="GradeCategoryID" />
+                <ScalarProperty Name="GradeCategoryName" ColumnName="GradeCategoryName" />
+                <ScalarProperty Name="GradeTypeAvarage1" ColumnName="GradeTypeAvarage" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentSurname" ColumnName="StudentSurname" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternInfo">
+            <EntityTypeMapping TypeName="DBDataContext.InternInfo">
+              <MappingFragment StoreEntitySet="InternInfo">
+                <ScalarProperty Name="InternID" ColumnName="InternID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="AuthorizedPersonel" ColumnName="AuthorizedPersonel" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentSurname" ColumnName="StudentSurname" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="CouncilID" ColumnName="CouncilID" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="DayOfRegistration" ColumnName="DayOfRegistration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RejectedApplications">
+            <EntityTypeMapping TypeName="DBDataContext.RejectedApplications">
+              <MappingFragment StoreEntitySet="RejectedApplications">
+                <ScalarProperty Name="RejectedID" ColumnName="RejectedID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentSurname" ColumnName="StudentSurname" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="DayOfRegister" ColumnName="DayOfRegister" />
+                <ScalarProperty Name="AuthorizedPersonel" ColumnName="AuthorizedPersonel" />
+                <ScalarProperty Name="DayOfRejection" ColumnName="DayOfRejection" />
+                <ScalarProperty Name="RejectedMessage" ColumnName="RejectedMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semester">
+            <EntityTypeMapping TypeName="DBDataContext.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+                <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="EndDateInternship" ColumnName="EndDateInternship" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentGrade">
+            <EntityTypeMapping TypeName="DBDataContext.StudentGrade">
+              <MappingFragment StoreEntitySet="StudentGrade">
+                <ScalarProperty Name="StudentGradeID" ColumnName="StudentGradeID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="GradeCategoryID" ColumnName="GradeCategoryID" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="CouncilID" ColumnName="CouncilID" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentOverallGrade">
+            <EntityTypeMapping TypeName="DBDataContext.StudentOverallGrade">
+              <MappingFragment StoreEntitySet="StudentOverallGrade">
+                <ScalarProperty Name="OverallGradeID" ColumnName="OverallGradeID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentUserInfo">
+            <EntityTypeMapping TypeName="DBDataContext.StudentUserInfo">
+              <MappingFragment StoreEntitySet="StudentUserInfo">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="StudentSchoolID" ColumnName="StudentSchoolID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentSurname" ColumnName="StudentSurname" />
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="StudentPhoneNumber" ColumnName="StudentPhoneNumber" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="CouncilID" ColumnName="CouncilID" />
+                <ScalarProperty Name="isAbroad" ColumnName="isAbroad" />
+                <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherUserInfo">
+            <EntityTypeMapping TypeName="DBDataContext.TeacherUserInfo">
+              <MappingFragment StoreEntitySet="TeacherUserInfo">
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="TeacherSurname" ColumnName="TeacherSurname" />
+                <ScalarProperty Name="TeacherEmail" ColumnName="TeacherEmail" />
+                <ScalarProperty Name="TeacherPassword" ColumnName="TeacherPassword" />
+                <ScalarProperty Name="TeacherRoom" ColumnName="TeacherRoom" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="CouncilID" ColumnName="CouncilID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

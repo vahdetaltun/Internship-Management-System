@@ -1,0 +1,89 @@
+﻿@model Stajtakip.Models.EntityFramework.StudentUserInfo
+@{
+    Layout = "~/Views/Shared/_RegisterPage.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/login-min.css" rel="stylesheet" />
+    <link href="~/Content/error-min.css" rel="stylesheet" />
+    <link href="~/Content/SquareButton.css" rel="stylesheet" />
+    <link href="~/Content/PlaceholderStyle.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body class="body">
+    @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+    {
+        <div class="container">
+            <div id="login-box" style="margin-left:19%;">
+                <div class="logo">
+                    <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" style="width:30%;" />
+                    <h1 class="logo-caption"><span class="tweak">I</span>nternship</h1> <h1 class="logo-caption"><span class="tweak">R</span>egister</h1>
+                </div><!-- /.logo -->
+                <div class="controls" style="height:100%;">
+                    @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name", @style = "font-size:10pt;border-top-right-radius:15px;border-top-left-radius:15px;" } })
+                    @Html.EditorFor(model => model.StudentSurname, new { htmlAttributes = new { @class = "form-control", placeholder = "Surname", @style = "font-size:10pt;" } })
+                    @Html.EditorFor(model => model.StudentSchoolID, new { htmlAttributes = new { @class = "form-control", placeholder = "School Number", @style = "font-size:10pt;" } })
+                    @Html.EditorFor(model => model.StudentPhoneNumber, new { htmlAttributes = new { @class = "form-control", @type = "tel", pattern = "[0-9]{3}[0-9]{3}[0-9]{4}", placeholder = "Ex: 5xxxxxxxxx", @style = "width:100%;font-size:10pt" } })
+                    @*Html.EditorFor(model => model.FacultyID, new { htmlAttributes = new { @class = "form-control", placeholder = "Faculty" } })*@
+                    @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "example@std.hku.edu.tr", pattern = "[a-z0-9._%+-]+@std.hku.edu.tr", @style = "font-size:10pt;" } })
+                    <input type="text" class="form-control" disabled="disabled" style="font-size:10pt;" placeholder="@Session["facultyName"]" value="@Session["facultyName"]" />
+                    <input type="text" class="form-control" disabled="disabled" style="font-size:10pt;" placeholder="@Session["depName"]" value="@Session["depName"]" />
+
+
+                    <button type="submit" name="Register" value="Register" class="btn btn-default btn-block btn-custom paragraf wow rotateIn" style="font-size:12pt;font-weight:bold;border-bottom-right-radius:15px;border-bottom-left-radius:15px;">Save</button>
+                    <br />
+                    <hr class="alert-light" style="margin:1%;" />
+                    <button class="btn-2" disabled="disabled"></button> <button class="btn-5" disabled="disabled"></button> <button class="btn-6" disabled="disabled"></button>
+                    <br />
+                    <hr class="alert-light" style="margin:1%;" />
+                    @Html.ActionLink("Login Page", "Login", null, new { @style = "color:#AC6868;text-decoration:none;font-size:13pt;" })
+
+                    @if (ViewBag.RegisterControl == true)
+                    {
+                    <div class="success-msg">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Succeeded! Your password has been sent to your e-mail address.
+                    </div>
+                    }
+                    @if (ViewBag.AlreadyInSystem == false)
+                    {
+                    <div class="error-msg" style="font-size:10pt;">
+                        <i class="fa fa-times-circle"></i>
+                        You have already registered in the system!
+                    </div>
+                    }
+                    @if (ViewBag.RegisterControl == false)
+                    {
+                        <div class="alert alert-danger" style="width:auto;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×
+                            </button>
+                            <hr class="message-inner-separator">
+                            <p>
+                                You have already registered in the system!
+                            </p>
+                        </div>
+
+
+                    }
+                    @if (ViewBag.RegisterControlFillAreas == true)
+                    {
+                        <div class="error-msg">
+                            <i class="fa fa-times-circle"></i>
+                            Please fill all the areas!
+                        </div>
+                    }
+
+                </div><!-- /.controls -->
+            </div><!-- /#login-box -->
+        </div><!-- /.container -->
+
+
+    }
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿.title {
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: x-large;
+    background-color: lightgrey;
+    border-radius: 8em;
+    color: black;
+}
+
+fa fa-calender {
+    color: black;
+}
+
+.subtitle {
+    font-weight: 200;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 11pt;
+    color: #949595;
+}

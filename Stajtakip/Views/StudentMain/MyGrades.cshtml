@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Stajtakip.Models.EntityFramework.GradeTypeAvarage>
+
+@using GridMvc.Html
+
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<script>
+    $function(){
+        $(".linkdisabled").click(function () {
+            return false;
+        }
+}
+</script>
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Grade Types</h5>
+        </div>   
+
+        <div class="card-body">
+             @Html.Grid(Model).Columns(Columns =>
+        {
+            Columns.Add(x => x.GradeCategoryName).Titled("Grade Type").Sortable(false).Filterable(false);
+            Columns.Add(x => x.GradeTypeAvarage1).Titled("Grade").Sortable(false).Filterable(false);
+        }).WithPaging(12).Sortable(true)
+         </div>
+    </div>
+</div>
+
+@if (Convert.ToInt32(Session["shwGrade"]) == 1)
+{
+    <div style="width:50%; margin-left:30%; margin-right:30%;">
+        <div class="card card-user">
+            <div class="boxshadow-title">
+                <div class="text-color-btn-vfi-default">Your Grade</div>
+            </div>
+            <div class="boxshadow-cardbody">
+                <div class="card-body">
+                    <br /><br /><br />
+                    <div style="text-align:center; font-size:32pt; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><table class="table"><tr><td>@Session["Grade1"]</td></tr><tr><td></td></tr></table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Convert.ToInt32(Session["shwGrade"]) == 2)
+{
+    <div style="width:50%; margin-left:30%; margin-right:30%;">
+        <div class="card card-user">
+            <div class="boxshadow-title">
+                <div class="text-color-btn-vfi-default">Your Grade</div>
+            </div>
+            <div class="boxshadow-cardbody">
+                <div class="card-body">
+                    <br /><br /><br />
+                    <div style="text-align:center; font-size:20pt; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"><table class="table"><tr><td>Grade has not assigned yet...</td></tr><tr><td></td></tr></table></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

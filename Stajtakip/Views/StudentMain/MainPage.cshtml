@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<link href="~/Content/academic-cal-min.css" rel="stylesheet" />
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<link href="~/Content/ddscrollspydemo.css" rel="stylesheet" />
+<script src="~/Scripts/ddscrollspy.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<style type="text/css">
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+</style>
+
+<div class="col-md-3 pl-3">
+    <div class="card card-user" style="border-bottom-left-radius:70px;">
+        @*<div class="boxshadow-title">
+                <h5 class="card-title text-color-btn-vfi-default">Actions</h5>
+            </div>*@
+        <div class="card-body">
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Semester<br />
+                <font face="Times New Roman" size="3" color="grey">@ViewBag.Semestername</font>
+            </p>
+            <hr />
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Internship App. Last Date <br />
+                <font face="Times New Roman" size="3" color="grey">@ViewBag.InternLastDate</font>
+            </p>
+            <hr />
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Internship Status<br />
+            </p>
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                @ViewBag.internStatusNow
+                
+            </p>
+            <hr />
+        </div>
+    </div>
+</div>
+<div class="card card-user" style="width:70%; margin-left:3%; height:700px; background-color:#4A4A4A; ">
+    <div class="card-body">
+        @Html.Raw(ViewBag.Embed)
+    </div>
+</div>   
+
+

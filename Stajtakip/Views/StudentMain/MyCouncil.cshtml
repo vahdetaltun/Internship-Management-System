@@ -1,0 +1,100 @@
+﻿@model  IEnumerable<Stajtakip.Models.EntityFramework.TeacherUserInfo>
+@using GridMvc.Html
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+@if (ViewBag.Control == true && ViewBag.RejectedControl==false)
+{
+    <div style="width:100%; margin-left:6%; margin-right:6%;">
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-record"></span> <strong>Information Message!</strong>
+            <hr class="message-inner-separator">
+            <p>
+                @ViewBag.Fail
+            </p>
+        </div>
+    </div>
+}
+else if (ViewBag.Control == true && ViewBag.RejectedControl == true)
+{
+    <div style="width:100%; margin-left:6%; margin-right:6%;">
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-record"></span> <strong>Information Message!</strong>
+            <hr class="message-inner-separator">
+            <p>
+                @ViewBag.Fail
+            </p>
+        </div>
+   
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-record"></span> <strong>Information Message!</strong>
+            <hr class="message-inner-separator">
+            <p>
+                @ViewBag.Rejected
+            </p>
+        </div>
+    </div>
+}
+else if (ViewBag.Control == false && ViewBag.RejectedControl==true)
+{
+    {
+        <div style="width:100%; margin-left:6%; margin-right:6%;">
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Information Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.Rejected
+                </p>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="col-md-12">
+        <div class="card card-user">
+            <div class="boxshadow-title">
+                <h5 class="card-title text-color-btn-vfi-default">My Council</h5>
+            </div>
+            <div class="card-header">
+                <h5 class="card-title" style="text-align:center;color:black; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size:xx-large;"><strong>@Session["CouncilName"]</strong></h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card card-user">
+            @if (ViewBag.ControlCard == true)
+            {
+                <div class="card-body" style="overflow-x:auto;">
+                    @Html.Grid(Model).Columns(Columns =>
+               {
+
+                   Columns.Add(x => x.TeacherName).Titled("Name").Sortable(true).Filterable(true);
+                   Columns.Add(x => x.TeacherSurname).Titled("Surname");
+                   Columns.Add(x => x.TeacherRoom).Titled("Room");
+                   Columns.Add(x => x.TeacherEmail).Titled("Email");
+
+               }).WithPaging(7).Sortable(true)
+
+                </div>
+            }
+        </div>
+    </div>
+}
+

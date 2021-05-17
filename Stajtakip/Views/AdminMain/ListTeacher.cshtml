@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Stajtakip.Models.EntityFramework.TeacherUserInfo>
+@using GridMvc.Html
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<div style="width:89%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Teachers</h5>
+        </div>
+        <div class="card-body"  style="overflow-x:auto;">
+            @Html.Grid(Model).Columns(Columns =>
+       {
+
+           Columns.Add(x => x.TeacherName).Titled("Name").Sortable(true).Filterable(true);
+           Columns.Add(x => x.TeacherSurname).Titled("Surname");
+        @*Columns.Add(x => x.TeacherEmail).Titled("Email");
+            Columns.Add(x => x.TeacherPassword).Titled("Password").Sortable(false).Sanitized(false);
+            Columns.Add(x => x.TeacherRoom).Titled("Room").Sortable(false).Sanitized(false);*@
+           Columns.Add()
+ .Encoded(false)
+ .Sanitized(false)
+ .SetWidth(10)
+ .RenderValueAs(x => Html.ActionLink("Edit", "EditTeacher", new { id = x.TeacherID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+           Columns.Add()
+ .Encoded(false)
+ .Sanitized(false)
+ .SetWidth(10)
+ .RenderValueAs(x => Html.ActionLink("Details", "DetailTeacher", new { id = x.TeacherID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+           Columns.Add()
+ .Encoded(false)
+ .Sanitized(false)
+ .SetWidth(10)
+ .RenderValueAs(x => Html.ActionLink("Delete", "DeleteTeacher", new { id = x.TeacherID }, new { onclick = "return confirm('Are you sure wish to delete this teacher?');", @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+
+       }).WithPaging(12).Sortable(true)
+        </div>
+    </div>
+</div>

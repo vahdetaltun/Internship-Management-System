@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Stajtakip.Models.EntityFramework.InternInfo>
+@using GridMvc.Html
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<link href="~/Content/tooltip-min.css" rel="stylesheet" />
+<script>// When the user clicks on div, open the popup
+    function popUpUnConfirm() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }</script>
+<div style="width:100%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Confirmed Students</h5>
+        </div>
+        <div class="card-body" style="overflow-x:auto;">
+            @Html.Grid(Model).Columns(Columns =>
+       {
+           Columns.Add(x => x.StudentName).Titled("Name").Sortable(true).Filterable(true).SetWidth(13);
+           Columns.Add(x => x.StudentSurname).Titled("Surname").Sortable(true);
+           Columns.Add(x => x.CompanyName).Titled("Company Name").Filterable(true);
+           Columns.Add(x => x.CompanyAddress).Titled("Company Address").Sortable(true);
+           Columns.Add(x => x.CompanyCity).Titled("Company City").Sortable(true);
+           Columns.Add(x => x.CompanyPhone).Titled("Company Phone").Sortable(true);
+           Columns.Add(x => x.AuthorizedPersonel).Titled("Authorized Personel").Sortable(true);
+           Columns.Add(x => x.DayOfRegistration).Titled("Application Date").Sortable(true);
+           Columns.Add()
+           .Encoded(false)
+           .Sanitized(false)
+           .SetWidth(20)
+           .RenderValueAs(x => Html.ActionLink("x", "UnconfirmStudent", new { id = x.StudentID }, new { onclick = "return confirm('Are you sure you want to unconfirm this application ?')" }));
+       }).WithPaging(12).Sortable(true)
+            <div>
+
+                @Html.ActionLink("Back", "InternshipOperations", null, new { @class = "btn btn-primary btn-large" })
+                <div class="popup" onclick="popUpUnConfirm()">
+                    <label style="color:#51cbce;">About Internship</label>
+                    <span class="popuptext" id="myPopup">if you accidentally unconfirm the internship status, you can change in "Unconfirmed Students" page.</span>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.GradedStd == true)
+        {
+            <div class="alert alert-danger" style="width:auto;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-ok"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Since this student has already graded you cannot unconfirm it again
+                </p>
+            </div>
+        }
+    </div>
+</div>

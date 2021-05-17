@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Stajtakip.Models.EntityFramework.InternInfo>
+@using GridMvc.Html
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Grade Of All Students</h5>
+        </div>
+
+        <div class="card-body">
+            @Html.Grid(Model).Columns(Columns =>
+       {
+
+           Columns.Add(x => x.StudentName).Titled("Name");
+           Columns.Add(x => x.StudentSurname).Titled("Surname");
+           Columns.Add(x => x.Grade).Titled("Grade");
+
+       }).WithPaging(12).Sortable(true)
+        </div>
+    </div>
+    <div class="col-md-3 pr-3">
+        <div class="card boxshadow-title">
+            <div class="card-footer" style="background-color:#DFDFDF; font-weight:bold; color:#51cbce">
+                @if (ViewBag.show == true)
+                {
+                    <p>Avarage=@Session["avg"]</p>
+                }
+                else if (ViewBag.show == false)
+                {
+                    <p>There are not any graded students yet !</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

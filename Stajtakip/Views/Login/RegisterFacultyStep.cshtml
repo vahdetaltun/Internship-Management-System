@@ -1,0 +1,52 @@
+﻿@model Stajtakip.Models.EntityFramework.Faculty
+
+@{
+    Layout = "~/Views/Shared/_RegisterPage.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/login-min.css" rel="stylesheet" />
+    <link href="~/Content/error-min.css" rel="stylesheet" />
+    <link href="~/Content/SquareButton.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body class="body">
+    @using (Html.BeginForm("RegisterFacultyStep", "Login", FormMethod.Post))
+    {
+        <div class="container">
+            <div id="login-box" style="margin-left:19%;">
+                <div class="logo">
+                    <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" style="width:45%;" />
+                    <h1 class="logo-caption"><span class="tweak">I</span>nternship</h1> <h1 class="logo-caption"><span class="tweak">R</span>egister</h1>
+                </div><!-- /.logo -->
+
+                <span class="row">
+                    @Html.DropDownList("Faculty", new SelectList(ViewBag.ddlFaculty, "Value", "Text"), "Select a Faculty", new { @class = "form-control", Name = "FacultyID", @style = "height:20%;" })
+                </span>
+                <button type="submit" name="Register" value="Register" class="btn btn-default btn-block btn-custom paragraf wow rotateIn" style="border-bottom-right-radius:15px;">Next</button>
+                <br />
+                <hr class="alert-light" style="margin:1%;" />
+                <button class="btn-2" disabled="disabled"></button> <button class="btn-3" disabled="disabled"></button> <button class="btn-4" disabled="disabled"></button>
+                <hr class="alert-light" style="margin:1%;" />
+                @Html.ActionLink("Login Page", "Login", null, new { @style = "text-decoration:none;font-size:13pt;color:#AC6868;" })
+                @if (ViewBag.FacError == true)
+                {
+                    <div class="error-msg">
+                        <i class="fa fa-times-circle"></i>
+                        Please select a faculty !
+                    </div>
+
+                }
+                <!-- /.controls -->
+            </div><!-- /#login-box -->
+        </div><!-- /.container -->
+
+
+    }
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="Refresh" content="5; URL=Login" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/beta.css" rel="stylesheet" />
+    <link href="~/Content/Layout-css/defaultPageFont-min.css" rel="stylesheet" />
+    @{
+        var endtime = DateTime.UtcNow.AddSeconds(5);
+        var timeRemaining = TimeSpan.FromTicks(endtime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+    }
+    <title>Hasan Kalyoncu University Internship Program</title>
+</head>
+<body>
+    <div class="container " style="background-color:black;">
+        <div class="container text-center" style="background-color:black;width:auto;height:auto">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow-x:auto;" id="">
+            </div>
+            <div id="login-box">
+                <br />
+                <div class="logo" style="background-color:black;">
+                    <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" />
+                    <br />
+                    <br />
+                    <h1 class="logo-caption" style="font-family:'Poiret One',cursive;"><span class="tweak" style="color:#ff5252;font-weight:200; font-size:30pt;">I</span><font color="white">nternship</font><br /> <span class="tweak " style="color:#ff5252;font-weight:200; font-size:30pt;margin-left:2em;">P</span><font color="white">rogram</font></h1>
+                </div>
+                <br />
+                <p style="color:white;font-size:18px">You will be redirected to login page in <span id="minRemaining"></span><span id="secRemaining" style="color:skyblue; font-size:18pt; "></span> seconds. If not<a href="Login"> click here </a>.<p />
+                <h4><p style="color:white;font-size:14px;color:cornflowerblue">Hasan Kalyoncu University 2019 ­®</p></h4>
+                <br />
+                <p style="color:white;font-size:15pt;margin-right:10px;color:white">Made By <font color="#B65151">Vahdet Cemil ALTUN & Furkan AYDEMİR & İbrahim KINA</font></p><p style="font-size:10pt; color:white;">All Rights Reserved Copyright©</p> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+        var remSeconds =@timeRemaining;
+        var secondsCounter = remSeconds % 60;
+        function formatNumber(number)
+        {
+            if (number < 10) return '' + number;
+            else return '' + number;
+        }
+        function startTick() {
+            document.getElementById("secRemaining").innerText = formatNumber(secondsCounter);
+
+
+
+            var _tick = setInterval(function () {
+                if (remSeconds > 0) {
+
+
+                    remSeconds = remSeconds - 1;
+                    secondsCounter = secondsCounter - 1;
+                    document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+
+                }
+
+            }, 1000);
+        }
+        startTick();
+</script>
+<body style='background: #000'>
+    @RenderBody()
+</body>

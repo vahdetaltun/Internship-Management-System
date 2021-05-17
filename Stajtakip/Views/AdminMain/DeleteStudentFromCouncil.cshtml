@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Stajtakip.Models.EntityFramework.StudentUserInfo>
+@using GridMvc.Html
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<script>
+    $function(){
+        $(".linkdisabled").click(function () {
+            return false;
+        }
+}</script>
+
+<div style="width:90%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Students in Council</h5>
+        </div>
+
+        @if ((int)Session["isStdDeletable"] == 1)
+        {
+            <div class="card-body" style="overflow:auto;">
+                @Html.Grid(Model).Columns(Columns =>
+           {
+        @* Columns.Add(c => c.TeacherID).Titled("Teacher ID Number").Filterable(true);*@
+                 Columns.Add(c => c.StudentName).Titled("Student Name");
+                 Columns.Add(c => c.StudentSurname).Titled("Student Surname");
+                 Columns.Add()
+.Encoded(false)
+.Sanitized(false)
+.SetWidth(25)
+//.RenderValueAs(o => Html.ActionLink("Edit", "Add", new { id = o.TeacherID }));
+.RenderValueAs(x => Html.ActionLink("X", "DeleteStudentCouncil", new { x.StudentID }));
+             }).WithPaging(8).Sortable(true)
+                @*@<a href="/AdminMain/ListCouncil" class="btn btn-primary btn-round">Back To List</a>@*@
+                @Html.ActionLink("Back", "ListCouncil", null, new { @class = "btn btn-primary btn-large", @style = "width:5em;" })
+
+            </div>
+        }
+
+
+        @if ((int)Session["isStdDeletable"] == 0)
+        {<div class="card-body" style="overflow:auto;">
+    @Html.Grid(Model).Columns(Columns =>
+{
+@* Columns.Add(c => c.TeacherID).Titled("Teacher ID Number").Filterable(true);*@
+     Columns.Add(c => c.StudentName).Titled("Student Name");
+     Columns.Add(c => c.StudentSurname).Titled("Student Surname");
+     Columns.Add()
+.Encoded(false)
+.Sanitized(false)
+.SetWidth(25)
+//.RenderValueAs(o => Html.ActionLink("Edit", "Add", new { id = o.TeacherID }));
+.RenderValueAs(x => Html.ActionLink("X", "DeleteStudentCouncil", new { x.StudentID }, new { @class = "linkdisabled" }));
+ }).WithPaging(8).Sortable(true)
+    @*@<a href="/AdminMain/ListCouncil" class="btn btn-primary btn-round">Back To List</a>@*@
+    @Html.ActionLink("Back", "ListCouncil", null, new { @class = "btn btn-primary btn-large", @style = "width:5em;" })
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button>
+        <span class="glyphicon glyphicon-record"></span> <strong style="color:white;">Error Message!</strong>
+        <hr class="message-inner-separator">
+        <p style="color:white;">
+            You cannot remove a student from this council because one or more of them have already graded.
+        </p>
+    </div>
+    
+</div>
+
+
+        }
+
+    </div>
+</div>

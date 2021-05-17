@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Internship Approval</h5>
+        </div>
+        <div style="margin:3%;text-align:center;">
+            <span>
+                @Html.ActionLink("Unconfirmed Students", "PendingStudents", null, new { @class = "btn btn-light" })
+            </span>
+            <span >
+                @Html.ActionLink("Confirmed Students", "ConfirmedStudents", null, new { @class = "btn btn-light" })
+            </span>
+        </div>
+    </div>
+</div>

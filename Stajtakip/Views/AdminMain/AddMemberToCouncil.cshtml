@@ -1,0 +1,131 @@
+﻿@model StajTakip.Models.CouncilTeacherViewModel
+@using GridMvc.Html
+@Html.Hidden("slcddl", Model.CouncilID)
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<script>
+    $function(){
+        $(".linkdisabled").click(function () {
+            return false;
+        }
+}</script>
+
+<div style="width:100%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Add Member To Council</h5>
+        </div>
+        <div class="row">
+            <div class="card-body">
+                <div class="col-md-4 pr-3">
+                    <div class="form-group">
+                        @using (Html.BeginForm("goToAddMember", "AdminMain", FormMethod.Get, new { @style = "margin-left:20%; margin-top:10%;" }))
+                        {
+                            if (ViewBag.Control != true)
+                            {
+                                <span class="row">
+                                    @Html.DropDownList("Council", new SelectList(ViewBag.ddlCouncil, "Value", "Text"), "Select a Council", new { @class = "form-control", Name = "CouncilID", @style = "height:20%;" })
+                                </span>
+                                <span class="row">
+                                    <input type="submit" value="Confirm" class="btn btn-light" />
+                                </span>
+                            }
+                        }
+                        @using (Html.BeginForm(null, null, FormMethod.Get, new { @style = "margin-left:20%; margin-top:10%;" }))
+                        {
+                            if (ViewBag.Control == true)
+                            {
+                                <span class="row">
+                                    @Html.DropDownList("cc", new SelectList(ViewBag.ddlCouncil, "Value", "Text"), "Select a Council", new { @class = "form-control", Name = "CouncilID", @style = "height:20%;" })
+                                </span>
+                                <span class="row">
+                                    <input type="submit" value="Confirm" class="btn btn-light" disabled="disabled" />
+                                </span>
+                            }
+                        }
+                    </div>
+                </div>
+                <!--#51cbce-->
+            </div>
+
+            @using (Html.BeginForm("SaveCouncil", "AdminMain", FormMethod.Post, new { @style = "width:35%; margin-right:10%; margin-top:2%;" }))
+            {
+                <div class="boxshadow-title">
+                    <div class="card card-user">
+                        <div class="card-body" style="overflow:auto; width:100%;">
+                            @foreach (var item in Model.tupCT.Item1)
+                            {
+                                if (item.isFilling == true)
+                                {
+                                    <table class="table">
+                                        <tr>
+                                            <td><i class="fas fa-clipboard">@Html.DisplayTextFor(model => item.CouncilName)</i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.Grid(Model.tupCT.Item3).Columns(Columns =>
+                                                {
+                                                   Columns.Add(c => c.TeacherName).Titled("Teacher Name");
+                                                   Columns.Add(c => c.TeacherSurname).Titled("Teacher Surname");
+
+                                               }).WithPaging(3).Sortable(true)
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            }
+                        </div>
+
+                        @if (ViewBag.teacherInCouncilCount != null)
+                        {
+                            <input type="submit" value="Save" class="btn btn-primary btn-round" style="width:75%; margin-left:13%; margin-right:13%;" />
+                            <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight:bold; color:#51cbce;">
+                                Count of Teachers in Council <div style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight:bold;">@ViewBag.teacherInCouncilCount</div>
+                            </p>
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>
+        @if ((int)Session["AnyCouncilSlc"] == 1)
+        {
+            <div class="card-body" style="overflow-x:auto;">
+                @Html.Grid(Model.tupCT.Item2).Columns(Columns =>
+           {
+
+               Columns.Add(c => c.TeacherName).Titled("Teacher Name");
+               Columns.Add(c => c.TeacherSurname).Titled("Teacher Surname");
+               Columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(15)
+    .RenderValueAs(x => Html.ActionLink("Add", "AddMemberToCouncilButton", new { x.TeacherID }));
+           }).WithPaging(8).Sortable(true)
+            </div>
+
+        }
+        else
+        {
+            <div class="card-body" style="overflow-x:auto;">
+                @Html.Grid(Model.tupCT.Item2).Columns(Columns =>
+           {
+
+               Columns.Add(c => c.TeacherName).Titled("Teacher Name");
+               Columns.Add(c => c.TeacherSurname).Titled("Teacher Surname");
+               Columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(15)
+    .RenderValueAs(x => Html.ActionLink("Add", "AddMemberToCouncilButton", new { x.TeacherID },new { @class = "linkdisabled" }));
+           }).WithPaging(8).Sortable(true)
+            </div>
+        }
+    </div>
+  
+</div>

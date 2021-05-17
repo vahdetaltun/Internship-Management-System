@@ -1,0 +1,147 @@
+﻿@model StajTakip.Models.RejectedApplicationInternInfoViewModel
+
+@using GridMvc.Html
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    hr.style-one {
+        border: 0;
+        height: 1px;
+        background: #333;
+        background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+        background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+        background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+        background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+    }
+
+    p.bodytext {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 10pt;
+        font-weight: 500;
+        color: darkgrey;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    textarea {
+        background: url(images/benice.png) center center no-repeat; /* This ruins default border */
+        border: 1px solid #888;
+    }
+</style>
+<div class="row" style="margin-left:2%;">
+    <div class="card card-user">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td class="title">Student Detail</td>
+                </tr>
+                <tr>
+                    <td class="title">School ID : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item3.StudentSchoolID)</td>
+                </tr>
+                <tr>
+                    <td class="title">Name : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.StudentName)</td>
+                </tr>
+                <tr>
+                    <td class="title">Surname : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.StudentSurname)</td>
+                </tr>
+                <tr>
+                    <td class="title">Company Name:</td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.CompanyName)</td>
+                </tr>
+                <tr>
+                    <td class="title">Company Address : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.CompanyAddress)</td>
+                </tr>
+                <tr>
+                    <td class="title">Company City : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.CompanyCity)</td>
+                </tr>
+                <tr>
+                    <td class="title">Company Phone : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.CompanyPhone)</td>
+                </tr>
+                <tr>
+                    <td class="title">Authorized Personel : </td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.AuthorizedPersonel)</td>
+                </tr>
+                <tr>
+                    <td class="title">Application Date</td>
+                    <td class="bodytext">@Html.DisplayTextFor(model => model.tupIR.Item1.DayOfRegistration)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card card-user" style="width:62%; margin-left:3%;">
+    <div class="card-body">
+        <p class="title">Reason For Rejection</p>
+        <div class="widget-area no-padding blank">
+            <div class="status-upload">
+                @using (Html.BeginForm("RejectStudentDetail", "AdminMain", FormMethod.Post))
+                {
+                    <textarea class="form-control" placeholder="Write down your reason for rejection" name="rejectmsg"></textarea>
+                    <button type="submit" class="btn btn-success green" onclick="return confirm('Are you sure you want to reject this student ?')"><i class="fa fa-share"></i> Save</button>
+                }
+
+            </div><!-- Status Upload  -->
+        </div><!-- Widget Area -->
+        @Html.ActionLink("Back", "PendingStudents", null, new { @class = "btn btn-primary btn-large" })
+
+        @if (ViewBag.RejectSuccess == true)
+        {
+            <div class="alert alert-success" style="width:auto;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-ok"></span> <strong>Success Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Message sended successfully !
+                </p>
+            </div>
+        }
+        @if (ViewBag.RejectSuccess == false)
+        {
+            <div class="alert alert-danger" style="width:auto;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-ok"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Occured a problem thus, message didn't send !
+                </p>
+            </div>
+        }
+        @if (ViewBag.textAreaNull == true)
+        {
+            <div class="alert alert-danger" style="width:auto;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-ok"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    This field cannot be empty !
+                </p>
+            </div>
+        }
+    </div>
+
+    <div class="card-body" style="overflow:auto;">
+        <p class="title">Previous Rejects</p>
+        @Html.Grid(Model.tupIR.Item2).Columns(Columns =>
+   {
+       Columns.Add(x => x.DayOfRegister).Titled("Application Date").Sortable(true).Filterable(true).SetWidth(10);
+       Columns.Add(x => x.DayOfRejection).Titled("Rejected Date").Sortable(true).Filterable(true).SetWidth(10);
+       Columns.Add(x => x.RejectedMessage).Titled("Description").Sortable(false).Filterable(false).SetWidth(10);
+   }).WithPaging(5).Sortable(true)
+    </div>
+
+</div>
+

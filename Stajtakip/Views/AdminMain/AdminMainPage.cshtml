@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/academic-cal-min.css" rel="stylesheet" />
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<style type="text/css">
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+</style>
+@*<script>
+    jQuery(function ($) { // on document load
+        $(menuselector).ddscrollSpy(options)
+    })
+</script>*@
+
+@*<script src="ddscrollspy.js">
+
+    </script>
+    <script>
+
+        jQuery(function ($) { // on document load
+            $('#horizontalmenu').ddscrollSpy({ // initialize first demo
+                scrolltopoffset: -50
+            })
+
+            $('#verticalspymenu').ddscrollSpy({ // initialize 2nd demo
+                spytarget: document.getElementById('contentcontainer'),
+                enableprogress: 'progress',
+                scrollduration: 300 // <-- no comma after last option!
+            })
+        })
+
+        function dynamicadditem() { // function that dynamically adds a new menu item to first demo, spying on #para6
+            $('#verticalspymenu').append('<li><a href="#para5">Paragraph 5</a></li>')
+            $('#verticalspymenu').trigger('updatespy')
+        }
+
+    </script>*@
+
+<!-- Scroll Spy Menu 2 -->
+
+<div class="col-md-3 pl-3">
+    <div class="card card-user" style="border-bottom-left-radius:70px;">
+        @*<div class="boxshadow-title">
+                <h5 class="card-title text-color-btn-vfi-default">Actions</h5>
+            </div>*@
+        <div class="card-body">
+            @using (Html.BeginForm("AdminMainPage", "AdminMain", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <p style="font-weight:bold; text-align:center; margin-bottom:1%;">Upload Calendar</p>
+                <input type="file" class="filestyle" data-buttonText="Select a File" name="file" />
+                <input type="submit" name="file" value="Save Calendar" class="btn btn-primary btn-round" style="width:100%;height:14%;font-size:10pt;font-weight:bold;" />
+            }
+            @if (Session["NullFile"] != null)
+            {
+                if ((int)Session["NullFile"] == 1)
+                {
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        <span class="glyphicon glyphicon-info-sign"></span> <strong>Warning Message!</strong>
+                        <hr class="message-inner-separator">
+                        <p>
+                            Please select a file.
+                        </p>
+                    </div>
+
+                }
+                else if ((int)Session["NullFile"] == 0)
+                {
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        <span class="glyphicon glyphicon-info-sign"></span> <strong>Success Message!</strong>
+                        <hr class="message-inner-separator">
+                        <p>
+                            Uploaded Successfuly.
+                        </p>
+                    </div>
+                }
+                else if ((int)Session["NullFile"] == 2)
+                {
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        <span class="glyphicon glyphicon-info-sign"></span> <strong>Error Message!</strong>
+                        <hr class="message-inner-separator">
+                        <p>
+                            You can only upload PDF File.
+                        </p>
+                    </div>
+                }
+            }
+
+
+            <hr />
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Semester<br />
+                <font face="Times New Roman" size="3" color="grey">@Session["SemesterName"]</font>
+            </p>
+            <hr />
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Internship App. Last Date <br />
+                <font face="Times New Roman" size="3" color="grey"> @Session["InternshipLastDate"]</font>
+            </p>
+            <hr />
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Update Semester <br />
+            </p>
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                @Html.ActionLink("Edit", "EditSemester", null, new { @style = "text-decoration:none;" })
+                <i class="fas fa-edit"></i>
+            </p>
+            <hr />
+            <p style="font-weight:bold; text-align:center; margin-bottom:1%;">
+                Active Students<br />
+                <font face="Times New Roman" size="3" color="grey">@Session["CountofStd"] Students</font>
+            </p>
+            <p></p>
+        </div>
+        @*<!-- clock widget start -->
+            <script type="text/javascript">var css_file = document.createElement("link"); css_file.setAttribute("rel", "stylesheet"); css_file.setAttribute("type", "text/css"); css_file.setAttribute("href", "//s.bookcdn.com//css/cl/bw-cl-150x100t.css"); document.getElementsByTagName("head")[0].appendChild(css_file);</script> <div id="tw_8_702052398"><div style="width:150px; height:100px; margin: 0 auto;"><a href="">Gaziantep</a><br /></div></div>
+            <script type="text/javascript">function setWidgetData_702052398(data) { if (typeof (data) != 'undefined' && data.results.length > 0) { for (var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_' + params.widget_type + '_' + params.widget_id); if (objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_702052398 = -1;</script>
+            <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=765&type=8&id=702052398&scode=124&city_id=11304&wlangid=21&mode=1&details=0&"></script>
+            <!-- clock widget end -->*@
+        @*<iframe src="http://free.timeanddate.com/clock/i6zmpu39/n3782/tltr28/tt0/tw0/tm1/ts1/tb4" frameborder="0" width="83" height="36"></iframe>*@
+    </div>
+</div>
+<div class="card card-user" style="width:70%; margin-left:3%; height:700px; background-color:#4A4A4A; ">
+    <div class="card-body">
+        @Html.Raw(ViewBag.Embed)
+    </div>
+</div>
+

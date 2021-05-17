@@ -1,0 +1,103 @@
+﻿@model StajTakip.Models.CouncilStudentViewModel
+@using GridMvc.Html
+@*@Html.Hidden("slcddl", Model.CouncilID)*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<div style="width:100%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Add Student To Council</h5>
+        </div><br />
+        <div class="card-body" style="overflow:auto;">
+            <div style="width:95%; margin-left:4%; margin-right:6%;">
+                <div class="form-group">
+                    <div class="row">
+                        @using (Html.BeginForm(null, null, FormMethod.Get, new { @style = "width:30%; margin-top:2%;" }))
+                        {
+                            <span class="row">
+                                @*<label style="font-size:14pt;color:#51cbce">Select Council</label>*@
+                                @Html.DropDownList("Council", new SelectList(ViewBag.Council, "Value", "Text"), "Select a Council", new { @class = "form-control", Name = "CouncilID", @style = "height:50px;" })
+                            </span>
+                            <span class="row">
+                                <input type="submit" value="Confirm" class="btn btn-light" />
+                            </span>
+                        }
+                        @using (Html.BeginForm("saveStudent", "AdminMain", FormMethod.Post, new { @style = "width:35%; height:25%; margin-left:20%;" }))
+                        {
+                            <div class="card card-user" style="overflow-x:auto;">
+                                <div class="boxshadow-title" style="overflow-x:auto;">
+                                    <div class="card-body">
+                                        @if (Session["CouncilID"] != null)
+                                        {
+                                            if ((int)Session["ShowComitee"] == 1)
+                                            {
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            <p style="font-size:14pt;color:darkslategray; font-weight:bold;">
+                                                                <i class="fa fa-address-card" aria-hidden="true"></i>
+                                                                @Session["slcCouncilName"]
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+
+                                                @Html.Grid(Model.tupCTS.Item2).Columns(Columns =>
+                                           {
+
+                                               Columns.Add(c => c.TeacherName).Titled("Teacher Name");
+                                               Columns.Add(c => c.TeacherSurname).Titled("Teacher Surname");
+
+                                           }).WithPaging(3).Sortable(true)
+                                                <p class="text-color" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;font-weight:bold;">Count of Students</p>
+                                                if (ViewBag.controlCounCount == true)
+                                                {
+                                                    <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight:bold;">@Session["count1"] Students</p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-weight:bold;"> @Session["count"] Students</p>
+                                                }
+                                            }
+
+                                            if (ViewBag.ControlSlcCouncil == true)
+                                            {
+                                                @ViewBag.Error
+                                            }
+                                        }
+                                    </div>
+                               
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                </div>
+            </div>
+
+            @Html.Grid(Model.tupCTS.Item3).Columns(Columns =>
+            {
+               //Columns.Add(c => c.StudentID).Titled("Roll Number").Filterable(true);
+              // Columns.Add(c => c.StudentSchoolID).Titled("Student School ID").Filterable(true);
+               Columns.Add(c => c.StudentName).Titled("Student Name").Filterable(true);
+               Columns.Add(c => c.StudentSurname).Titled("Student Surname").Filterable(true);
+               Columns.Add()
+               .Encoded(false)
+               .Sanitized(false)
+               .SetWidth(30)
+               //.RenderValueAs(o => Html.ActionLink("Edit", "Add", new { id = o.TeacherID }));
+               .RenderValueAs(x => Html.ActionLink("Add", "AddStudentMethod", new { x.StudentID }));
+            }).WithPaging(8).Sortable(true)
+        </div>
+    </div>
+</div>
+

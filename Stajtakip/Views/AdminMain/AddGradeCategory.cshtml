@@ -1,0 +1,127 @@
+﻿@model Stajtakip.Models.EntityFramework.GradeCategory
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<link href="~/Content/tooltip-min.css" rel="stylesheet" />
+<script>
+    // When the user clicks on div, open the popup
+    function popUpStart() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+<div style="width:100%; margin-left:6%; margin-right:6%; ">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Evaluation Criteria Management</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AddGradeCategory", "AdminMain", FormMethod.Post))
+            {
+
+                <div class="row">
+                    <div class="col-md-5 pr-1 pl-3">
+                        <div class="form-group">
+                            <label>Add Grade Type</label>
+                            @* <input type="email" class="form-control" placeholder="Email">*@
+                            @Html.EditorFor(model => model.GradeName, new { htmlAttributes = new { @class = "form-control", placeholder = "Grade Type" } })
+                            @Html.ValidationMessageFor(model => model.GradeName, "", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-5 pr-1">
+                        <div class="form-group">
+                            <label>Percentage</label>
+                            @Html.EditorFor(model => model.Percent, new { htmlAttributes = new { @class = "form-control", type = "number", @min = "0", @max = "100", placeholder = "Percentage" } })
+                            @Html.ValidationMessageFor(model => model.Percent, "", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-5 pr-1">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <div class="popup" onclick="popUpStart()">
+                                <label style="color:#51cbce;">Format</label>
+                                <span class="popuptext" id="myPopup">Year-Month-Day Hour:Minute</span>
+                            </div>
+                            <input type="datetime-local" name="StartDate" placeholder="yyyy-mm-dd --:--" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-5 pr-1">
+                        <div class="form-group">
+                            <label>Last Date</label>
+                            <input type="datetime-local" name="EndDate" placeholder="yyyy-mm-dd --:--"
+                                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="update ml-auto mr-auto ">
+                        <button type="submit" class="btn btn-primary btn-success">Add Grade Category</button>
+                        <td>@Html.ActionLink("Back", "AdminMainPage", null, new { @class = "btn btn-primary btn-large " })</td>
+                    </div>
+                </div>
+            }
+        </div>
+        @if (ViewBag.Control == true)
+        {
+            <div class="alert alert-success" style="width:auto;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-ok"></span> <strong>Success Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.success
+                </p>
+            </div>
+        }
+        else if (ViewBag.Control == false)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.fail
+                </p>
+            </div>
+        }
+
+        @if (ViewBag.StartDateError == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Start date cannot be set for before today's date.
+                </p>
+            </div>
+        }
+        @if (ViewBag.EndDateError == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Last date cannot be set for before start date.
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+

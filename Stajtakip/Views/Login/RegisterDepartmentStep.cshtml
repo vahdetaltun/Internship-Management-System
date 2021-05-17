@@ -1,0 +1,57 @@
+﻿@model Stajtakip.Models.EntityFramework.Department
+@{
+    Layout = "~/Views/Shared/_RegisterPage.cshtml";
+}
+
+<html>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/login-min.css" rel="stylesheet" />
+    <link href="~/Content/error-min.css" rel="stylesheet" />
+    <link href="~/Content/SquareButton.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body class="body">
+    @using (Html.BeginForm("RegisterDepartmentStep", "Login", FormMethod.Post))
+    {
+        <div class="container">
+            <div id="login-box" style="margin-left:19%;">
+                <div class="logo">
+                    <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" style="width:50%;" />
+                    <h1 class="logo-caption"><span class="tweak">I</span>nternship</h1> <h1 class="logo-caption"><span class="tweak">R</span>egister</h1>
+                </div><!-- /.logo -->
+
+                <span class="row">
+                    @Html.DropDownList("Faculty", new SelectList(ViewBag.ddlDepartment, "Value", "Text"), "Select a Department", new { @class = "form-control", Name = "DepartmentID", @style = "height:20%;" })
+                </span>
+                <span class="row">
+                </span>
+
+
+                <button type="submit" name="Register" value="Register" class="btn btn-default btn-block btn-custom paragraf wow rotateIn" style="border-top-right-radius:15px;border-top-left-radius:15px;">Next</button>
+                @Html.ActionLink("Back", "RegisterFacultyStep", null, new { @class = "btn btn-default btn-block btn-custom paragraf wow rotateIn ", @style = "color:white;background-color:cadetblue;border-bottom-right-radius:15px;border-bottom-left-radius:15px;" })
+                <br />
+                <hr class="alert-light" style="margin:1%;" />
+                <button class="btn-2" disabled="disabled"></button> <button class="btn-5" disabled="disabled"></button> <button class="btn-4" disabled="disabled"></button>
+                <hr class="alert-light" style="margin:1%;" />
+                @Html.ActionLink("Login Page", "Login", null, new { @style = "text-decoration:none;font-size:13pt;color:#AC6868;" })
+                @if (ViewBag.DepartmentControl == true)
+                {
+                <div class="error-msg">
+                    <i class="fa fa-times-circle"></i>
+                    Please Select a Department !
+                </div>
+
+                }
+                <!-- /.controls -->
+            </div><!-- /#login-box -->
+        </div><!-- /.container -->
+
+
+    }
+</body>
+</html>

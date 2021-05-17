@@ -1,0 +1,70 @@
+﻿@model Stajtakip.Models.EntityFramework.InternInfo
+@{
+    ViewBag.Title = "MyStudentsInternDetail";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<style>
+
+    strong {
+        color: darkgray;
+    }
+</style>
+<div style="width:100%; margin-left:6%; margin-right:16%;">
+    <div class="card card-user" style="width:100%; margin-left:6%; margin-right:6%;">
+        <div class="boxshadow-title">
+            <h2 class="card-title text-color-btn-vfi-default">Student Internship Details</h2>
+        </div>
+        <div class="card-body">
+            <br />
+            <table class="table">
+                <tr>
+                    @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.StudentName):</td>*@
+                    <td style="font-weight:bold; color:grey;">Name :</td>
+                    <td>@Html.DisplayFor(model => model.StudentName)</td>
+                </tr>
+                <tr>
+                    @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.StudentSurname):</td>*@
+                    <td style="font-weight:bold; color:grey;">Surname :</td>
+                    <td>@Html.DisplayFor(model => model.StudentSurname)</td>
+                </tr>
+                <tr>
+                    @* <td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.CompanyName):</td>*@
+                    <td style="font-weight:bold; color:grey;">Company Name :</td>
+                    <td>@Html.DisplayFor(model => model.CompanyName)</td>
+                </tr>
+                <tr>
+                    @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.CompanyAddress):</td>*@
+                    <td style="font-weight:bold; color:grey;">Company Address :</td>
+                    <td>@Html.DisplayFor(model => model.CompanyAddress)</td>
+                </tr>
+                <tr>
+                    @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.CompanyCity):</td>*@
+                    <td style="font-weight:bold; color:grey;">Company City :</td>
+                    <td>@Html.DisplayFor(model => model.CompanyCity)</td>
+                </tr>
+                <tr>
+                    @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.CompanyPhone):</td>*@
+                    <td style="font-weight:bold; color:grey;">Company Phone :</td>
+                    <td>@Html.DisplayFor(model => model.CompanyPhone)</td>
+                </tr>
+                <tr>
+                    @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.AuthorizedPersonel):</td>*@
+                    <td style="font-weight:bold; color:grey;">Authorized Personel :</td>
+                    <td>@Html.DisplayFor(model => model.AuthorizedPersonel)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+
+                    @*<td><a href="/AdminMain/ListTeacher" class="btn btn-primary btn-round">Back</a></td>@*@
+                    <td>@Html.ActionLink("Back", "MyStudents", null, new { @class = "btn btn-primary btn-large", @style = "margin-left:50%; width:10em;" })</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

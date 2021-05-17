@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/login-min.css" rel="stylesheet" />
+    <link href="~/Content/error-min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div id="login-box" style="margin-left:19%;">
+            <div class="logo">
+                <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" style="width:80%;" />
+                <h1 class="logo-caption"><span class="tweak">I</span>nternship</h1> <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+            </div><!-- /.logo -->
+            <div class="controls" style="height:73%;">
+
+                @*<label class="form-check" style="color:aliceblue;"><input type="checkbox" name="Benihatirla" class="checkbox-radios" /> Remember Me!</label>*@
+
+            </div><!-- /.controls -->
+        </div><!-- /#login-box -->
+    </div><!-- /.container -->
+    @RenderBody()
+    <div id="particles-js"></div>
+    }
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿/*.message-bubble {
+    padding: 10px 0px 10px 0px;
+}
+
+    .message-bubble:nth-child(even) {
+        background-color: #F5F5F5;
+    }
+
+    .message-bubble > * {
+        padding-left: 10px;
+    }*/
+
+.panel-body {
+    padding: 0px;
+}
+
+.panel-heading {
+    background-color: #3d6da7 !important;
+    color: white !important;
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.text-stdname{
+    font-size:13pt;
+    font-weight:bold;
+    font-family:Calibri;
+    color:darkgray;
+    margin:0px;
+    margin-left:1%;
+    padding:1px;
+}
+.text-stdcontent {
+    font-size: 10pt;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: lighter;
+    margin: 0px;
+    margin-left: 1%;
+}
+.text-stddate{
+    font-size:8pt;
+    font-weight:lighter;
+    font-family:Calibri;
+    color:darkgray;    
+    margin:0px;
+    text-align:right;
+}

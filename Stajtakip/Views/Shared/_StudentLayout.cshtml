@@ -1,0 +1,295 @@
+﻿@{
+    /**/
+
+    Layout = null;
+}
+@{
+
+    var endtime = DateTime.UtcNow.AddSeconds(30001);
+    var timeRemaining = TimeSpan.FromTicks(endtime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/Layout-css/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/Content/Layout-css/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        HKU Internship Admin Panel
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="~/Content/Layout-css/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Layout-css/assets/css/paper-dashboard.css" rel="stylesheet" />
+    <link href="~/Content/calendar.css" rel="stylesheet" />
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/vfi-min.css" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    
+    @*<link href="../assets/demo/demo.css" rel="stylesheet" />*@
+    <link href="~/Content/Layout-css/assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+</head>
+<body class="">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="#7D7D7D" data-active-color="danger">
+            <!--
+                Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+            -->
+            <div class="logo">
+                <a class="simple-text logo-mini">
+                    <div class="logo-image-small">
+                        <img src="~/Content/Layout-css/assets/img/logo-small.png">
+                    </div>
+                </a>
+                <a class="simple-text logo-normal">
+                    @Session["Name"]
+                    <!-- <div class="logo-image-big">
+      <img src="../assets/img/logo-big.png">
+    </div> -->
+                    <br />
+                    <marquee direction=right>@Session["DepartmentName"]</marquee>
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li>
+                        <i class="fas fa-home" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Home Page", "MainPage", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="far fa-building" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Enter Intern Info", "AddInternInfo", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="fab fa-wpforms" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Intern Info Status", "InternStatu", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope-open-text" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("My Grades", "MyGrades", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="fa fa-upload" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Upload Intern Files", "GradeCategoryList", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="fa fa-refresh" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Update Intern Info", "UpdateInternInfo", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="fas fa-address-card" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Contact Teacher", "ContactTeachers", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+                    <li>
+                        <i class="fa fa-users" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("My Council", "MyCouncil", null, new { htmlAttributes = new { @style = "color:white;" } })
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent" data-color="#7D7D7D" data-active-color="danger">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar1"></span>
+                        </button>
+                        <img src="~/Image/blacklogo.png" />
+                        <a class="navbar-brand">Hasan Kalyoncu University</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#deneme" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                        <span class="navbar-toggler-bar navbar-kebab"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <div>
+                            <i class="fas fa-stopwatch"> </i>
+                            <p> <strong> Time: </strong><strong><span id="minRemaining"></span>:<span id="secRemaining"></span></strong></p>
+
+                        </div>
+
+                        <ul class="navbar-nav" style="background-color:#F4F3EF;">
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block">
+                                        <i class="fas fa-home" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Home Page", "MainPage", null, new { htmlAttributes = new { @style = "color:white;" } })
+                                    </span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"> <i class="far fa-building" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Enter Intern Info", "AddInternInfo", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"> <i class="fab fa-wpforms" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Intern Info Status", "InternStatu", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"><i class="fas fa-envelope-open-text" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("My Grades", "MyGrades", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"><i class="fa fa-upload" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Upload Intern Files", "GradeCategoryList", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"> <i class="fa fa-refresh" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Update Intern Info", "UpdateInternInfo", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"> <i class="fas fa-address-card" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("Contact Teacher", "ContactTeachers", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                            <li class="nav-item">
+                                <p>
+                                    <span class="d-lg-none d-md-block"> <i class="fa fa-users" style="margin-top:10px;margin-left:20px;"></i>@Html.ActionLink("My Council", "MyCouncil", null, new { htmlAttributes = new { @style = "color:white;" } })</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end" id="deneme">
+                    <ul class="navbar-nav" style="background-color:#F4F3EF;">
+                        <li>@Html.ActionLink("Profile", "UpdateInfo", null, new { htmlAttributes = new { @style = "color:white;" } })</li>
+                        <li><a href="/Login/Login" style="margin-left:15px"><i class="fas fa-power-off"></i></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer class="footer footer-black  footer-white ">
+                <span class="copyright">
+                    ©
+                    <script>document.write(new Date().getFullYear())</script>, Hasan Kalyoncu University
+                </span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <nav class="footer-nav"></nav>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="~/Content/Layout-css/assets/js/core/jquery.min.js"></script>
+    <script src="~/Content/Layout-css/assets/js/core/popper.min.js"></script>
+    <script src="~/Content/Layout-css/assets/js/core/bootstrap.min.js"></script>
+    <script src="~/Content/Layout-css/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/Scripts/gridmvc.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="~/Content/Layout-css/assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="~/Content/Layout-css/assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="~/Content/Layout-css/assets/demo/demo.js"></script>
+    <script src="~/Scripts/calendar.js"></script>
+    <!--TIMER-->
+    <script>
+        var remSeconds =@timeRemaining;
+        var secondsCounter = remSeconds % 60;
+        function formatNumber(number)
+        {
+            if (number < 10) return '0' + number;
+            else return '' + number;
+        }
+        function startTick() {
+            document.getElementById("secRemaining").innerText = formatNumber(secondsCounter);
+            document.getElementById("minRemaining").innerText = formatNumber(parseInt(remSeconds/60));
+
+
+            var _tick = setInterval(function () {
+                if (remSeconds > 0) {
+
+
+                    remSeconds = remSeconds - 1;
+                    secondsCounter = secondsCounter - 1;
+                    document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                    document.getElementById('minRemaining').innerText = formatNumber( parseInt(remSeconds / 60)) ;
+                    if (secondsCounter == 0) {
+                        secondsCounter = 60;
+                    }
+                }
+
+            }, 1000);
+        }
+        startTick();
+    </script>
+    <!-- İbonun işleri -->
+    <script>
+        fetch('https://api.ipify.org?format=json')
+            .then(
+                function (response) {
+
+                    response.json().then(function (data) {
+                        console.log(`%cYour IP: ` + data.ip, "font-size:32px;color:black;-webkit-text-stroke: 1px black;font-weight:700;");
+                    });
+                }
+            )
+            .catch(function (err) {
+
+            });
+        console.log(`%c...............................................................................
+.                                                                             .
+.                                  *.                                         .
+.                                *****                                        .
+.                              *********                                      .
+.                            *********.  *                                    .
+.                            ********  .****                                  .
+.                       *    ******.  .*******                                .
+.                     ***    ****.  .***********                              .
+.                   *****    **.  .   .**********                             .
+.                  ' ****    *  .***.   .******.                              .
+.                ***'  **     .*******.   .**.                                .
+.              *******' *    ***********.   *                                 .
+.            **********'.    *************.             *                     .
+.            ************    . .*********.             ***                    .
+.        .                   **.  .****.             *******                  .
+.      ***   ************    ****.  *.             ***********                .
+.      ***   ************    ******.             ***************              .
+.        .   ************    ****.   .*.           ***********                .
+.            ************    **.   .*****            *******                  .
+.            .***********    .   .*********            ***                    .
+.              .*********      .*************           *                     .
+.                .*******    .***   ****   ****                               .
+.                  .***.   .*********************                             .
+.                    .   .***     *********    ****                           .
+.                      .******   ***********  *******                         .
+.                        .****   ***********  *****                           .
+.                          .**   ***********  ***                             .
+.                            *   ***********  *                               .
+.                                ***********                                  .
+.                                 ********.                                   .
+.                                   *****                                     .
+.                                     *                                       .
+.                                                                             .
+.                   !!!!  OPPSSSS! BUSTED   !!!                               .
+.                                                                             .
+.                                                                             .
+.                                                                             .
+.               VAHDET ALTUN,İBRAHİM KINA AND FURKAN AYDEMİR                  .
+...............................................................................`, "color:#9acc14; background:darkblue; font-family: monospace");
+
+    </script>
+</body>
+</html>

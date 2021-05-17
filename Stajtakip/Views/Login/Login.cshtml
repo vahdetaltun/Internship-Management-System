@@ -1,0 +1,84 @@
+﻿@model Stajtakip.Models.EntityFramework.StudentUserInfo
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/login-min.css" rel="stylesheet" />
+    <link href="~/Content/error-min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />   
+    <link href="~/Content/showPass-min.css" rel="stylesheet" />
+    <link href="~/Content/PlaceholderStyle.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body class="body">
+    <script>
+        function GetCaptcha() {
+            $("#rsm").attr('src', '/Home/CaptchaImage?' + new Date().getTime());
+        }
+    </script>
+    @using (Html.BeginForm("CaptchaImage", "Login", FormMethod.Post))
+    {
+        <div class="container">
+            <div id="login-box" style="margin-left:19%;">
+                <div class="logo">
+                    <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" style="width:80%;" />
+                    <h1 class="logo-caption"><span class="tweak">I</span>nternship</h1> <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+                </div><!-- /.logo -->
+                <div class="controls" style="height:73%;">
+                    @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                    @Html.EditorFor(model => model.StudentPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password", @id = "password-field" } })
+                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    <script>
+                        $(".toggle-password").click(function () {
+
+                            $(this).toggleClass("fa-eye fa-eye-slash");
+                            var input = $($(this).attr("toggle"));
+                            if (input.attr("type") == "password") {
+                                input.attr("type", "text");
+                            } else {
+                                input.attr("type", "password");
+                            }
+                        });
+                    </script>
+
+
+                    <p style="margin-top:2%;">
+                        <img src="@Url.Action("CaptchaImage")" id="rsm" style="width:auto;" />
+                        <input class="captcha-textbox" data-val="true" id="Captcha" name="Captcha" placeholder="Answer" style="padding:1%; width:auto;">
+                    </p>
+                    @*@<label class="form-check" style="color:aliceblue;"><input type="checkbox" name="Benihatirla" class="checkbox-radios" /> Remember Me!</label>*@
+                    <button type="submit" name="Login" value="Login" class="btn btn-default btn-block btn-custom paragraf wow rotateIn">Login</button>
+                <br />
+                    <p>
+                        @Html.ActionLink("Sign Up", "RegisterFacultyStep", null, new { @style = "text-decoration:none;color:#AC6868;font-size:12pt;font-weight:bold;" }) <span style="color:white;font-weight:bold;display:inline-block;">/</span>
+                        @Html.ActionLink("Can't Sign In?", "ResetPassword", null, new { @style = "text-decoration:none;color:#AC6868;font-size:12pt;font-weight:bold;" })
+                    </p>
+                    @if (ViewBag.control == true)
+                    {
+                        <div class="error-msg">
+                            <i class="fa fa-times-circle"></i>
+                            @ViewBag.Error
+                        </div>
+                    }
+                    @if (ViewBag.finishSemesterForTch == true)
+                    {
+                        <div class="error-msg">
+                            <i class="fa fa-times-circle"></i>
+                            @ViewBag.finishSemesterForTchError
+                        </div>
+                    }
+                </div><!-- /.controls -->
+            </div><!-- /#login-box -->
+        </div><!-- /.container -->
+
+        <div id="particles-js"></div>
+    }
+</body>
+</html>

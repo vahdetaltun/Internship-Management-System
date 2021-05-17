@@ -1,0 +1,143 @@
+﻿@model Stajtakip.Models.EntityFramework.InternInfo
+
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Intern Informations</h5>
+        </div>
+        <div class="card-body">
+            @*<form method="post" class="form-control">*@
+            @using (Html.BeginForm("AddInternInfoAbroad", "StudentMain", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            <div class="form-group">
+                                <label>Company Name</label>
+                                @if (ViewBag.Control == false)
+                                {
+                                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", placeholder = "You cannot add new informations" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                }
+
+                                else if (ViewBag.Control == true)
+                                {
+                                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Company Name" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                }
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-11 pr-1">
+                            <div class="form-group">
+                                <label>Company Address</label>
+                                @if (ViewBag.Control == false)
+                                {
+                                    @Html.EditorFor(model => model.CompanyAddress, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", placeholder = "You cannot add new informations" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyAddress, "", new { @class = "text-danger" })
+                                }
+                                else if (ViewBag.Control == true)
+                                {
+                                    @Html.EditorFor(model => model.CompanyAddress, new { htmlAttributes = new { @class = "form-control", @type = "textarea", placeholder = "Company Address" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyAddress, "", new { @class = "text-danger" })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            <div class="form-group">
+                                <label>City</label>
+                                @if (ViewBag.Control == false)
+                                {
+                                    @Html.EditorFor(model => model.CompanyCity, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", placeholder = "You cannot add new informations" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyCity, "", new { @class = "text-danger" })
+                                }
+                                else if (ViewBag.Control == true)
+                                {
+                                    @Html.EditorFor(model => model.CompanyCity, new { htmlAttributes = new { @class = "form-control", placeholder = "Company City" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyCity, "", new { @class = "text-danger" })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            <div class="form-group">
+                                <label>Company Phone</label>
+                                @if (ViewBag.Control == false)
+                                {
+                                    @Html.EditorFor(model => model.CompanyPhone, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", placeholder = "You cannot add new informations" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
+                                }
+                                else if (ViewBag.Control == true)
+                                {
+                                    @Html.EditorFor(model => model.CompanyPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "Company Phone" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 pr-1">
+                            <div class="form-group">
+                                <label>Authorized Personel</label>
+                                @if (ViewBag.Control == false)
+                                {
+                                    @Html.EditorFor(model => model.AuthorizedPersonel, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", placeholder = "You cannot add new informations" } })
+                                    @Html.ValidationMessageFor(model => model.AuthorizedPersonel, "", new { @class = "text-danger" })
+                                }
+                                else if (ViewBag.Control == true)
+                                {
+                                    @Html.EditorFor(model => model.AuthorizedPersonel, new { htmlAttributes = new { @class = "form-control", placeholder = "Authorized Personel" } })
+                                    @Html.ValidationMessageFor(model => model.AuthorizedPersonel, "", new { @class = "text-danger" })
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    @if (ViewBag.Control == true)
+                    {
+                        @Html.ActionLink("For Domestic Internship", "makeDomestic")
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary btn-round">Save Informations</button>
+                            </div>
+                        </div>
+                    }
+
+                    @if (ViewBag.InfoControl == true)
+                    {
+                        <div class="warning-msg">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            @ViewBag.InfoApprove
+                        </div>
+                    }
+                    @if (ViewBag.ControlFill == true)
+                    {
+                        <div class="warning-msg">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            @ViewBag.Fail
+                        </div>
+                    }
+                </div>
+            }
+
+            @*</form>*@
+        </div>
+    </div>
+</div>
+

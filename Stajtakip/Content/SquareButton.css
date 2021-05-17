@@ -1,0 +1,94 @@
+﻿.btn-2 {
+    width: 17px;
+    height: 17px;
+    border: none;
+    color: orangered;
+    background-color: orangered;
+    cursor: pointer;
+    border: 2px solid orangered;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+    .btn-2:hover {
+        color: orangered;
+        background-color: orangered;
+        border: 2px solid orangered;
+    }
+
+.btn-3 {
+    width: 17px;
+    height: 17px;
+    border: none;
+    color: silver;
+    background-color: silver;
+    cursor: pointer;
+    border: 2px solid silver;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+    .btn-3:hover {
+        color: red;
+        background-color: silver;
+        border: 2px solid silver;
+    }
+
+.btn-4 {
+    width: 17px;
+    height: 17px;
+    border: none;
+    color: silver;
+    background-color: silver;
+    cursor: pointer;
+    border: 2px solid silver;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+    .btn-4:hover {
+        color: white;
+        background-color: silver;
+        border: 2px solid silver;
+    }
+
+.btn-5 {
+    width: 17px;
+    height: 17px;
+    border: none;
+    color: orangered;
+    background-color: orangered;
+    cursor: pointer;
+    border: 2px solid orangered;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+    .btn-5:hover {
+        color: orangered;
+        background-color: orangered;
+        border: 2px solid orangered;
+    }
+
+.btn-6 {
+    width: 17px;
+    height: 17px;
+    border: none;
+    color: orangered;
+    background-color: orangered;
+    cursor: pointer;
+    border: 2px solid orangered;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.btn-5:hover {
+    color: orangered;
+    background-color: orangered;
+    border: 2px solid orangered;
+}

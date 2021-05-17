@@ -1,0 +1,67 @@
+﻿@model Stajtakip.Models.EntityFramework.TeacherUserInfo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<style>
+
+    strong {
+        color: darkgray;
+    }
+</style>
+<div style="width:100%; margin-left:6%; margin-right:16%;">
+    <div class="card card-user" style="width:100%; margin-left:6%; margin-right:6%;">
+
+            <div class="boxshadow-title">
+                <h2 class="card-title text-color-btn-vfi-default">Teacher Details</h2>
+            </div>
+            <div>
+                <br />
+                <table class="table">
+                    <tr>
+                        @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.TeacherName):</td>*@
+                        <td style="font-weight:bold; color:grey;">Name :</td>
+                        <td>@Html.DisplayFor(model => model.TeacherName)</td>
+                    </tr>
+                    <tr>
+                        @* <td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.TeacherSurname):</td>*@
+                        <td style="font-weight:bold; color:grey;">Surname :</td>
+                        <td>@Html.DisplayFor(model => model.TeacherSurname)</td>
+                    </tr>
+                    <tr>
+                        @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.TeacherEmail):</td>*@
+                        <td style="font-weight:bold; color:grey;">E-mail :</td>
+                        <td>@Html.DisplayFor(model => model.TeacherEmail)</td>
+                    </tr>
+                    <tr>
+                        @*<td style="font-weight:bold; color:grey;">@Html.DisplayNameFor(model => model.TeacherRoom):</td>*@
+                        <td style="font-weight:bold; color:grey;">Room :</td>
+                        <td>@Html.DisplayFor(model => model.TeacherRoom)</td>
+                    </tr>
+                    @*<tr>
+                      
+                        <td style="font-weight:bold; color:grey;">Status :</td>
+                        @if (ViewBag.Control == true)
+                        {
+                            <td>Confirmed</td>
+                        }
+                        else
+                        {
+                            <td>Unconfirmed</td>
+                        }
+                    </tr>*@
+                    <tr>
+                      <td></td>
+                      
+
+                        @*<td><a href="/AdminMain/ListTeacher" class="btn btn-primary btn-round">Back</a></td>@*@
+                       @* <td>@Html.ActionLink("Back", "ListTeacher", null, new { @class = "btn btn-primary btn-large" })</td>*@
+                        <td>@Html.ActionLink("Back", "ListTeacher", null, new { @class = "btn btn-primary btn-large", @style = "margin-left:70%;" })</td>
+                    </tr>
+                </table>
+            </div>
+       
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model StajTakip.Models.CouncilTeacherViewModel
+@using GridMvc.Html
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<div style="width:90%; margin-right:6%; margin-left:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Councils</h5>
+        </div>
+        <div class="card-body" style="overflow:auto;">
+            <div class="form-group">
+                @Html.Grid(Model.tupCT.Item1).Columns(Columns =>
+  {
+      Columns.Add(c => c.CouncilName).Titled("Council Name");
+      Columns.Add()
+      .Encoded(false)
+      .Sanitized(false)
+      .SetWidth(50)
+      .RenderValueAs(x => Html.ActionLink("Students", "DeleteStudentFromCouncil", new { x.CouncilID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+      Columns.Add()
+      .Encoded(false)
+      .Sanitized(false)
+      .SetWidth(50)
+      .RenderValueAs(x => Html.ActionLink("Edit", "EditCouncil", new { x.CouncilID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+      Columns.Add()
+      .Encoded(false)
+      .Sanitized(false)
+      .SetWidth(20)
+      //.RenderValueAs(o => Html.ActionLink("Edit", "Add", new { id = o.TeacherID }));
+      .RenderValueAs(x => Html.ActionLink("Delete", "DeleteCouncil", new { x.CouncilID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+
+  }).WithPaging(8).Sortable(true)
+            </div>
+        </div>
+    </div>
+    @*@if (Session["editable"] != null)
+    {
+        if ((int)Session["editable"] == 0)
+        {
+            @Session["NotEditableCouncil"]
+        }
+    }*@
+
+</div>

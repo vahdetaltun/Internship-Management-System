@@ -1,0 +1,105 @@
+﻿@model Stajtakip.Models.EntityFramework.StudentUserInfo
+
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+<script>
+    function showHidden() {
+        var x = document.getElementById("myInputCurrent");
+        var y = document.getElementById("myInputNew");
+        var z = document.getElementById("myInputConfirm");
+
+        if (x.type == "password" || y.type == "password" || z.type == "password") {
+            x.type = "text";
+            y.type = "text";
+            z.type = "text";
+        } else {
+            x.type = "password";
+            y.type = "password";
+            z.type = "password";
+        }
+    }
+</script>
+
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Change Password</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("UpdateInfo", "StudentMain", FormMethod.Post))
+            {
+                <div class="row" style="margin:5px;">
+                    <label>Current Password</label>
+                    <input type="password" name="Currentpass" class="form-control" id="myInputCurrent" placeholder="Current Password" />
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>New Password</label>
+                    @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control", @id = "myInputNew", placeholder = "New Password" } })
+                    @Html.ValidationMessageFor(model => model.NewPassword, "", new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                <div class="row" style="margin:5px;">
+                    <label>Confirm Password</label>
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @id = "myInputConfirm", placeholder = "Confirm Password" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { htmlAttributes = new { @class = "form-control" } })
+                    <label><input type="checkbox" onclick="showHidden()"> Show Password</label>
+                </div>
+
+                <div style="text-align:center;">
+                    <button type="submit" class="btn btn-primary btn-success" style="text-align:center; width:20%;" onclick="return confirm('Are you sure that you want to change your password ?\nYou will redirect to Login.')">Update</button>
+                </div>
+            }
+        </div>
+        @if (ViewBag.pass == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.PassError
+
+                </p>
+            </div>
+        }
+        @if (ViewBag.PassForm == false)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+
+                    Please have at least 6 characters and at least one lower and upper case character and a non letter character and at least a numerical character in your new password !
+                </p>
+            </div>
+        }
+        @if (ViewBag.ThereIsSpaceInPass == true)
+        {
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Error Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Please enter a valid password !
+                </p>
+                <p style="font-size:9pt;margin-top:1%;font-weight:bold;">Password cannot include space character.</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

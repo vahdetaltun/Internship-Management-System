@@ -1,0 +1,107 @@
+﻿@model Stajtakip.Models.EntityFramework.TeacherUserInfo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+<div style="width:100%;margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Add New Teacher</h5>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AddTeacher", "AdminMain", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label>University Name</label>
+                            <input type="text" class="form-control" disabled="" placeholder="Hasan Kalyoncu University" value="Hasan Kalyoncu University">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 pr-1">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Teacher Name</label>
+                            @* <input type="email" class="form-control" placeholder="Email">*@
+                            @Html.EditorFor(model => model.TeacherName, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+                            @Html.ValidationMessageFor(model => model.TeacherName, "", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-md-5 pr-1">
+                        <div class="form-group">
+                            <label>Teacher Surname</label>
+                            @Html.EditorFor(model => model.TeacherSurname, new { htmlAttributes = new { @class = "form-control", type = "form-control", placeholder = "Surname" } })
+                            @Html.ValidationMessageFor(model => model.TeacherSurname, "", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            <label>Teacher Email</label>
+                            @*@<input type="text" class="form-control" placeholder="First Name" />@*@
+                            @Html.EditorFor(model => model.TeacherEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", @type = "email" } })
+                            @Html.ValidationMessageFor(model => model.TeacherEmail, "", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    @*<div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label>Teacher Password</label>
+                        @Html.EditorFor(model => model.TeacherPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                        @Html.ValidationMessageFor(model => model.TeacherPassword, "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label>Teacher Room</label>
+                            @Html.EditorFor(model => model.TeacherRoom, new { htmlAttributes = new { @class = "form-control", placeholder = "Teacher Room" } })
+                            @*@Html.ValidationMessageFor(model => model.TeacherRoom, "", new { htmlAttributes = new { @class = "form-control" } })*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="update ml-auto mr-auto ">
+                        <button type="submit" class="btn btn-primary btn-success">Add Teacher</button>
+                        @Html.ActionLink("Back", "AdminMainPage", null, new { @class = "btn btn-primary btn-large " })
+                    </div>
+                </div>
+            }
+
+
+            @if (ViewBag.Control == true)
+            {
+                <div class="alert alert-success" style="width:auto;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        ×
+                    </button>
+                    <span class="glyphicon glyphicon-ok"></span> <strong>Success Message!</strong>
+                    <hr class="message-inner-separator">
+                    <p>
+                        @ViewBag.success
+                    </p>
+                </div>
+            }
+            else if (ViewBag.Control == false)
+            {
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        ×
+                    </button>
+                    <span class="glyphicon glyphicon-record"></span> <strong style="color:white;">Error Message!</strong>
+                    <hr class="message-inner-separator">
+                    <p style="color:white;">
+                        @ViewBag.fail
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

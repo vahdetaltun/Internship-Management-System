@@ -1,0 +1,82 @@
+﻿@model Stajtakip.Models.EntityFramework.Semester
+@{
+    Layout = "~/Views/Shared/_OutOfOrderLayout.cshtml";
+}
+<link href="~/Content/tooltip-min.css" rel="stylesheet" />
+<script>
+    // When the user clicks on div, open the popup
+    function popUpFormat() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+<form method="post" action="StartSemester">
+    <div class="container" style="margin-left:50%; margin-top:45%; ">
+        <div id="login-box" style="margin-left:19%;">
+            <div class="form-group" style="margin-top:7%;">
+                <div class="card-body">
+                    <label style="color:white;">Semester Name</label>
+                    @* @Html.EditorFor(model => model.SemesterName, new { htmlAttributes = new { @class = "form-control", @style = "width:400px;", placeholder = "Semester Name" } })*@
+                    <select name="Semester" class="form-control" style="width:100%;">
+                        <option value="Empty">Please select the semester</option>
+                        <option value="Fall Semester">Fall Semester</option>
+                        <option value="Spring Semester">Spring Semester</option>
+                        <option value="Summer Semester">Summer Semester</option>
+                    </select>
+                    <div class="controls" style="height:73%;">
+                        <div class="form-group">
+                            <label style="color:white; margin-top:2%;">Deadline For Semester</label>
+                            <p style="margin:0%;"><label style="color:darkred;">Format:(Year-Month-Day Hour:Minute)</label></p>
+                            <input type="datetime-local" name="EndDate" placeholder="yyyy-mm-dd --:--"
+                                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" class="form-control" style="border-bottom-right-radius:15px;" />
+                        </div>
+                    </div>
+                    <div class="controls" style="height:73%;">
+                        <label style="color:white; margin-top:2%;">Deadline For Internship Application</label>
+                        <input type="datetime-local" name="EndDateInternship" placeholder="yyyy-mm-dd --:--"
+                               pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" class="form-control" style="border-bottom-right-radius:15px;"/>
+                    </div>
+                </div>
+                <div class="alert alert-warning" style="margin-top:2%;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        ×
+                    </button>
+                    <span class="glyphicon glyphicon-record"></span> <strong>IMPORTANT !</strong>
+                    <hr class="message-inner-separator">
+                    <p style="text-align:left;font-weight:bold;">• You can edit 'Deadlines' only before the last<br /> date of the semester ! </p>
+                    <p style="text-align:left;font-weight:bold;">• Deadline For Semester is the date that all the records<br /> will be deleted !</p>
+                    <p style="text-align:left;font-weight:bold;">• Deadline For Internship Application is the last date that<br /> students can apply for an internship !</p>
+                    
+                </div>
+                <div class="controls">
+                    <label style="color:white;">Confirmation</label>
+                    <input type="text" name="confirm" class="form-control" placeholder="Write 'confirm'" style="border-bottom-right-radius:15px;" />
+                </div>
+                <button type="submit" class="btn btn-custom" style="width:100%; margin-top:4%; font-weight:bold; border-bottom-left-radius:15px; border-bottom-right-radius:15px;">Start Semester</button>
+                @if (ViewBag.ConfirmControl == true)
+                {
+                    <div class="error-msg">
+                        <i class="fa fa-times-circle"></i>
+                        Please be sure to CONFIRM !
+                    </div>
+                }
+                @if (ViewBag.EdateControl == true)
+                {
+                    <div class="error-msg">
+                        <i class="fa fa-times-circle"></i>
+                        Please enter a valid date!
+                    </div>
+                }
+                @if (ViewBag.SnameControl == true)
+                {
+                    <div class="error-msg">
+                        <i class="fa fa-times-circle"></i>
+                        Please select a Semester!
+                    </div>
+                }
+            </div>
+          
+        </div><!-- /.controls -->
+    </div><!-- /#login-box -->
+</form>
+

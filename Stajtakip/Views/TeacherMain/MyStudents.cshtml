@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StajTakip.Models.EntityFramework.StudentUserInfo>
+@using GridMvc.Html
+@{
+
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+
+<div style="overflow-x:auto; width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">My Students</h5>
+        </div>
+        <div><br /></div>
+        @if (ViewBag.Controlstd == true)
+        {
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    ×
+                </button>
+                <span class="glyphicon glyphicon-record"></span> <strong>Information Message!</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    @ViewBag.emptyStd
+                </p>
+            </div>
+        }
+
+        <div class="card-body" style="overflow-x:auto;">
+            @Html.Grid(Model).Columns(Columns =>
+       {
+           Columns.Add(x => x.StudentSchoolID).Titled("Student School ID").Sortable(true).Filterable(true).SetWidth(13);
+           Columns.Add(x => x.StudentName).Titled("Name").Sortable(true).Filterable(true);
+           Columns.Add(x => x.StudentSurname).Titled("Surname");
+
+           Columns.Add()
+           .Encoded(false)
+           .Sanitized(false)
+           .SetWidth(20)
+           .RenderValueAs(x => Html.ActionLink("Select", "GradeCategoryList", new { stdID = x.StudentID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+           Columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(10)
+            .RenderValueAs(x => Html.ActionLink("Details", "MyStudentsInternDetail", new { StudentID = x.StudentID }, new { @style = "text-decoration:none;font-size:10pt;font-weight:bold;" }));
+       }).WithPaging(12).Sortable(true)
+        </div>
+    </div>
+</div>
+
+

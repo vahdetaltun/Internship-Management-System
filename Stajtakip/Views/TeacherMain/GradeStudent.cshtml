@@ -1,0 +1,143 @@
+﻿@model StajTakip.Models.GradeDocumentViewModel
+@using GridMvc.Html
+@{
+                /**/
+
+                Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<link href="~/Content/chat-min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<div style="width:100%; margin-left:6%; margin-right:6%;">
+    <div class="card card-user">
+        <div class="boxshadow-title">
+            <h5 class="card-title text-color-btn-vfi-default">Grade Student</h5>
+        </div>
+        <div class="card-body">
+            @*@using (Html.BeginForm(null, null, FormMethod.Get))
+                {
+                    <span class="row">
+                        <label style="font-size:14pt;color:#51cbce">Select Grade Category</label>
+                        @Html.DropDownList("GradeCategoryID", new SelectList(ViewBag.Grade, "Value", "Text"), "Bir Seçim Yapın", new { @class = "form-control", Name = "GradeCategoryID" })
+                    </span>
+                    <span class="row">
+                        <input type="submit" value="Confirm" class="btn btn-light" />
+                    </span>
+                }*@
+            <br />
+            @using (Html.BeginForm("GradeStudent", "TeacherMain", FormMethod.Post))
+            {
+                <label>Grade</label>
+                @Html.EditorFor(model => model.Grade, new { htmlAttributes = new { @class = "form-control", @name = "Grade", @type = "number", @min = "0", @max = "100", placeholder = "Grade", @style = "width:30%; " } })
+                //@Html.TextBoxFor(model => model.Grade, new { type = "number",step="0.01" ,@class = "form-control",min = "0", max="100"})
+                //<input name="Grade" type="number" class="form-control"  step="0.01" min="0" max="100"/>
+                //@Html.ValidationMessageFor(model => model.Grade, "", new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                <button type="submit" style="width:30%" class="btn btn-primary btn-success">SAVE</button>
+
+
+            }
+
+            <div class="alert alert-warning" style="width:30%; background-color:#EEF3F3; color:black;">
+                Current Grade : @Session["CurrentGrade"]
+            </div>
+            <br />
+            <div style=" width:70%;">
+                <div class="card card-user ">
+                    <div class="card-body" style="background-color:#EEF3F3; overflow:auto;">
+                        <div class="card-header">
+                            <h5 class="card-title text-color-btn-vfi-default">Files</h5>
+                        </div>
+                        @if (Model.docgrade != null)
+                        {
+                            @Html.Grid(Model.docgrade).Columns(Columns =>
+                         {
+                              Columns.Add().Encoded(false).Titled("").Sanitized(false).Sortable(true).Filterable(false).RenderValueAs(c => @<div style="width:2em;"><img alt="Image" src='~/Image/pdfLogo.png' )" /></div>).SetWidth(1);
+                     Columns.Add(x => x.FileLocation).Titled("").Sortable(true).Filterable(true).SetWidth(300);
+                     Columns.Add()
+                                                                                 .Encoded(false)
+                                                                                 .Sanitized(false)
+                                                                                 .SetWidth(20)
+                                                                                 .RenderValueAs(x => Html.ActionLink("View PDF", "ViewPDF", new { id = x.DocumentID }, new { target = "_blank" }));
+
+                 }).WithPaging(12).Sortable(true)
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.ControlNull == true)
+        {
+            <div class="alert alert-danger" style="width:auto;">
+                <i class="fas fa-exclamation-triangle"></i>
+                @ViewBag.Mssg
+            </div>
+        }
+        @if (ViewBag.Control == true)
+        {
+            <div class="alert" style="width:auto">
+                <i class="fas fa-times"></i>
+                @ViewBag.msg
+            </div>
+        }
+        <div class="row pr-5 ">
+            <div class="update ml-auto mr-auto">
+                <p>@ViewBag.deneme</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-user" style="width:100%; height:300px; margin-left:9%; margin-right:9%; border-radius:15px;">
+    <div class="panel-heading">Comment</div>
+    <div style="height:100%; overflow:auto;">
+        <div class="container" style="overflow-y:auto;">
+            <div class="row">
+                <div class="panel panel-default" style="width:100%;">
+
+                    <div class="panel-body">
+                        @foreach (var item in Model.comment)
+                        {
+                            <div class="container">
+                                <div class="message-bubble" style="background-color:#F5F5F5; border-bottom:double 6px; border-color:white; overflow-x:auto;">
+                                    <div>
+                                        <p class=" text-stdname">
+                                            @Html.DisplayTextFor(model => item.SenderName)
+                                            @Html.DisplayTextFor(model => item.SenderSurname)
+                                        </p>
+                                        <p class="text-stdcontent">@Html.DisplayTextFor(model => item.Comment1)</p>
+                                        <p class="text-stddate">@Html.DisplayTextFor(model => item.Date)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class=" card card-user" style="width:100%; margin-left:9%; margin-right:9%; border-radius:15px;">
+    @using (Html.BeginForm("SendMessage", "TeacherMain", FormMethod.Post))
+    {
+        <div class="panel-footer">
+            <div class="input-group">
+                @Html.EditorFor(model => model.sendingcomment, new { htmlAttributes = new { @class = "form-control", placeholder = "Text here...", @style = "margin-left:1%;margin-top:1%;" } })
+                @*<input type="text" class="form-control">*@
+                <span class="input-group-btn">
+                    @*<button class="btn btn-primary btn-round" type="button">Send</button>*@
+                    @*<input type="submit" name="comment" value="Send" class="btn btn-primary btn-round" />*@
+                    <input type="submit" name="comment" value="Send" class="btn-dark" style="margin:-15%; margin-top:20%; height:79%; border-bottom-right-radius:20px;" />
+                </span>
+            </div>
+        </div>
+    }
+</div>

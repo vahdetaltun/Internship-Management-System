@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Stajtakip.Models.EntityFramework.InternInfo>
+
+@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<!-- CSS Files -->
+<script src="~/Scripts/loadingList-min.js"></script>
+<link href="~/Content/text.config.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@if (ViewBag.CouncilNull == true)
+{
+    <div style="width:88%; margin-left:6%; margin-right:6%;">
+        <div class="card card-user">
+            <div class="boxshadow-title">
+                <h5 class="card-title text-color-btn-vfi-default">Intern Informations</h5>
+            </div>
+            <div class="card-body" style="overflow-x:auto;">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.CompanyName)*@
+                            @Html.Label("Company Name")
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.CompanyAddress)*@
+                            @Html.Label("Company Address")
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.CompanyCity)*@
+                            @Html.Label("Company City")
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.CompanyPhone)*@
+                            @Html.Label("Company Phone")
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.AuthorizedPersonel)*@
+                            @Html.Label("Authorized Personel")
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.Approve)*@
+                            @Html.Label("Status")
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(model => model.Grade)*@
+                            @Html.Label("Overall Grade")
+                        </th>
+                        @*<th>@Html.Label("Letter Grade")</th>*@
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyCity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyPhone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorizedPersonel)
+                            </td>
+                            <td>
+                                @if ((item.Approve) == true)
+                                {
+                                    <p style="padding-top:1.2em;">Confirmed</p>
+                                }
+                                else
+                                {
+                                    <p style="padding-top:1.2em;">Pending</p>
+                                }
+                            </td>
+                            <td>
+                                @if (ViewBag.vfi == true)
+                                {
+                                    @Html.DisplayFor(modelItem => item.Grade)
+                                }
+                                else
+                                {
+                                    <p style="padding-top:1.2em;">Not Graded</p>
+                                }
+
+                            </td>                      
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div style="width:100%; margin-left:6%; margin-right:6%;">
+        <div class="alert alert-info" style="color:white;">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-record"></span> <strong>Information Message!</strong>
+            <hr class="message-inner-separator">
+            <p>
+                Council has not assigned yet!
+            </p>
+        </div>
+    </div>
+  
+}
+@if (ViewBag.Control2 == true)
+{
+    <div style="width:100%; margin-left:6%; margin-right:6%;">
+        <div class="alert alert-warning" style="color:white;">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×
+            </button>
+            <span class="glyphicon glyphicon-info-sign"></span> <strong>Warning Message!</strong>
+            <hr class="message-inner-separator">
+            <p>
+                @ViewBag.Fail2
+            </p>
+        </div>
+    </div>
+}
+
+
+
+
+

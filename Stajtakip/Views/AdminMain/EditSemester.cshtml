@@ -1,0 +1,94 @@
+﻿@model Stajtakip.Models.EntityFramework.Semester
+
+@{
+    Layout = "~/Views/Shared/_OutOfOrderLayout.cshtml";
+}
+<link href="~/Content/tooltip-min.css" rel="stylesheet" />
+<script>
+    // When the user clicks on div, open the popup
+    function popUpFormat() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+</script>
+
+<form method="post" action="EditSemester">
+    <div class="container" style="margin-left:50%; margin-top:45%; ">
+        <div id="login-box" style="margin-left:19%;">
+            <div class="form-group" style="margin-top:7%;">
+                <div class="card-body">
+                    <div class="alert alert-warning" style="margin-top:2%;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                            ×
+                        </button>
+                        <span class="glyphicon glyphicon-record"></span> <strong>IMPORTANT !</strong>
+                        <hr class="message-inner-separator">
+                        <p style="text-align:left;font-weight:bold;">• You can edit 'Deadlines' only before the last<br/> date of the semester ! </p>
+                        <p style="text-align:left;font-weight:bold;">• Deadline For Semester is the date that all the records<br /> will be deleted !</p>
+                        <p style="text-align:left;font-weight:bold;">• Deadline For Internship Application is the last date that<br /> students can apply for an internship !</p>
+
+                    </div>
+                    <label style="color:white;">Semester Name</label>
+                    @if (ViewBag.fallSemester == true)
+                    {
+                        <select name="Semester" class="form-control" style="width:100%;">
+                            <option value="Fall Semester" selected>Fall Semester</option>
+                            <option value="Spring Semester">Spring Semester</option>
+                            <option value="Summer Semester">Summer Semester</option>
+                        </select>
+                    }
+                    else if (ViewBag.springSemester == true)
+                    {
+                        <select name="Semester" class="form-control" style="width:100%;">
+                            <option value="Fall Semester" selected>Fall Semester</option>
+                            <option value="Spring Semester" selected>Spring Semester</option>
+                            <option value="Summer Semester">Summer Semester</option>
+                        </select>
+                    }
+                    else
+                    {
+                        <select name="Semester" class="form-control" style="width:100%;">
+                            <option value="Fall Semester" selected>Fall Semester</option>
+                            <option value="Spring Semester">Spring Semester</option>
+                            <option value="Summer Semester" selected>Summer Semester</option>
+                        </select>
+                    }
+
+                    <div class="controls" style="height:73%;">
+                        <div class="form-group">
+                            <label style="color:white; margin-top:2%;">Deadline For Semester</label>
+                            <p style="color:lightcoral">Previous Date: (@Html.DisplayTextFor(model => model.EndDate))</p>
+
+                            <input type="datetime-local" name="EndDate" placeholder="yyyy-mm-dd --:--"
+                                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" class="form-control" style="border-bottom-right-radius:15px;" />
+                        </div>
+                    </div>
+                    <div class="controls" style="height:73%;">
+                        <label style="color:white; margin-top:2%;">Deadline For Internship Application</label>
+                        <p style="color:lightcoral">Previous Date: (@Html.DisplayTextFor(model => model.EndDateInternship))</p>
+                        <input type="datetime-local" name="EndDateInternship" placeholder="yyyy-mm-dd --:--"
+                               pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" class="form-control" style="border-bottom-right-radius:15px;" />
+                    </div>
+                    <div class="controls">
+                        <label style="color:white;">Confirmation</label>
+                        <input type="text" name="confirm" class="form-control" placeholder="Write 'confirm'" style="border-bottom-right-radius:15px;" />
+                    </div>
+                    <button type="submit" class="btn btn-custom" style="width:100%; margin-top:4%; font-weight:bold; border-bottom-left-radius:15px; border-bottom-right-radius:15px;" onclick="return confirm('Are you sure?')">Update</button>
+                    @Html.ActionLink("Back", "AdminMainPage", null, new { @class = "btn btn-custom", @style = "width:100%; background-color:lightcoral;color:white;margin-top:4%; font-weight:bold; border-bottom-left-radius:15px; border-bottom-right-radius:15px;" })
+                </div>
+                @if (ViewBag.fillAllAreas == true)
+                {
+                    <div class="error-msg">
+                        <i class="fa fa-times-circle"></i>
+                        Please fill all the areas!
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+</form>
+

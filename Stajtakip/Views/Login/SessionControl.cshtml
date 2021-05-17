@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/Scripts/login-min.js"></script>
+    <link href="~/Content/login-min.css" rel="stylesheet" />
+    <link href="~/Content/error-min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+        example_f {
+            border-radius: 4px;
+            background: linear-gradient(to right, #4ca2cb, #4ca2cb) !important;
+            border: none;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 22px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.4s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .example_f span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.4s;
+        }
+
+            .example_f span:after {
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+        .example_f:hover span {
+            padding-right: 25px;
+        }
+
+            .example_f:hover span:after {
+                opacity: 1;
+                right: 0;
+            }
+    </style>
+    <title>Login</title>
+</head>
+<body class="body">
+
+    <div class="container">
+        <div id="login-box" style="margin-left:19%;">
+            <div class="logo">
+                <img src="~/Image/logo.png" class="img img-responsive img-circle center-block" style="width:80%;" />
+                <h1 class="logo-caption"><span class="tweak">C</span>ontinue as . . .</h1> 
+            </div><!-- /.logo -->
+            <div class="controls" style="height:73%;">
+                <br /><br />         
+                      <div class="button_cont">
+                          @Html.ActionLink("ADMIN", "RedirectToAdmin", null, new { @class = "btn btn-primary", @style = "background:linear-gradient(to right, #302E2D,#951B1B);border-radius: 10px; border: none;color: white;text-align: center;text-transform: uppercase;font-size:15pt;padding:1%;width: 35%;transition: all 0.4s;" })
+                          @*<button class="example_f" name="selectedSessionAdmin" href="add-website-here" rel="nofollow" style="background: linear-gradient(to right, #302E2D,#951B1B);
+        border-radius: 10px; border: none;color: white;text-align: center;text-transform: uppercase;font-size:15pt;padding:1%;width: 35%;transition: all 0.4s;
+        cursor: pointer;margin: 5px;">
+              <span>Admin</span>
+          </button>*@
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          @Html.ActionLink("TEACHER", "RedirectToTeacher", null, new { @class = "btn btn-primary", @style = "background:linear-gradient(to right, #302E2D,#951B1B);border-radius: 10px; border: none;color: white;text-align: center;text-transform: uppercase;font-size:15pt;padding:1%;width: 35%;transition: all 0.4s;" })
+                          @*<button class="example_f" name="selectedSessionTeacher" href="add-website-here" rel="nofollow" style="background: linear-gradient(to right, #302E2D,#951B1B);
+        border-radius: 10px; border: none;color: white;text-align: center;text-transform: uppercase;font-size:15pt;padding:1%;width: 35%;transition: all 0.4s;
+        cursor: pointer;margin: 5px;">
+              <span>Teacher</span>
+          </button>*@
+                      </div>
+
+            </div><!-- /.controls -->
+        </div><!-- /#login-box -->
+    </div><!-- /.container -->
+
+    <div id="particles-js"></div>
+</body>
+</html>
