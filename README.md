@@ -2,7 +2,7 @@
 
 
 <ul>
-    <li>Its MVC5 Project (Model-View-Controller)</li>
+    <li>Its MVC5 Project (Model-View-Controller) ASP.NET MVC</li>
     <li>Dynamic Web Site</li>
     <li>interactive pages via JS</li>
     <li>Entity Framework</li>
